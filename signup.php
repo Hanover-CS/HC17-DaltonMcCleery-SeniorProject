@@ -25,7 +25,7 @@ if (isset($_POST['username'])){
         //echo ($result);
         if($result){
             echo " <h3>You are registered successfully!</h3>
-                   <br/>Click here to <a href='log_screen.php'>Login</a>";
+                   <br/>Click here to <a href='login.php'>Login</a>";
         }
     }else{
 ?>
