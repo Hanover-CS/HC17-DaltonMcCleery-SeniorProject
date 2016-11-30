@@ -5,10 +5,8 @@
 	function get_file_address($id, $table, $conn)
 	{
 		$query = "SELECT file FROM $table WHERE id = '$id'";
-		//echo $query;
 		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
 		return $result[0];
-		//return $query;
 	}
 
 
@@ -21,7 +19,7 @@
    		$result = mysqli_fetch_array(mysqli_query($conn, $get_id));
    
    		//then access the 'id' field of that array from the query
-   		return $result['id'];
+   		return $result[0];
 	}
 
 
@@ -31,11 +29,29 @@
 		$get_name = "SELECT name FROM chops_students WHERE username= '$user'";
 
 		 //execute then convert the get query into an array
-   		$result = mysqli_fetch_array(mysqli_query($conn, $get_id));
+   		$result = mysqli_fetch_array(mysqli_query($conn, $get_name));
    
    		//then access the 'id' field of that array from the query
-   		return $result['name'];
+   		return $result[0];
 
+	}
+
+
+	//get the file name from the library tables
+	function get_file_name($id, $table, $conn)
+	{
+		$query = "SELECT name FROM $table WHERE id = '$id'";
+		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+		return $result[0];
+	}
+
+
+	//get the etude composer from the library tables
+	function get_file_composer($id, $conn)
+	{
+		$query = "SELECT composer FROM chops_etudes WHERE id = '$id'";
+		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+		return $result[0];
 	}
 
 	//more functions go here...
