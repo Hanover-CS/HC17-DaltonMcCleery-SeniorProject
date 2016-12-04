@@ -2,20 +2,12 @@
 	include 'navbar.php';
 	require_once 'dbconnect.php';
 	//include 'something else stylish.html';
+	include 'functions.php';
 
-
+	html_starter();
+	$id = get_id($_SESSION['username'], $_SESSION['password'], $conn)
 ?>
-
-<!DOCTYPE HTML>
 <html>
-
-	<head>
-		<title>Chops/User/<?= $_SESSION['username'] ?></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    	<!-- Bootstrap -->
-    	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	</head>
 
 	<body>
 
@@ -23,12 +15,11 @@
     <div class="jumbotron">
         <div class="container">
           <h1><font color="red">My Favorites</font></h1>
-          <p>Learn more about this feature and more in the <a href="about.html" class="navbar-link"> About</a> section!</p>
+          <p>Learn more about this feature and more in the <a href="about.php" class="navbar-link"> About</a> section!</p>
         </div>
     </div>
 
-
-
+    <?= get_Favorites($id, $conn) ?>
 
 
 

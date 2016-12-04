@@ -3,7 +3,8 @@
   session_start();
   //include 'login.php';
 
-  $person = $_SESSION['fname']
+  $person = $_SESSION['fname'];
+  //echo $person;
 
 ?>
 
@@ -15,8 +16,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<!-- Bootstrap -->
     	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	</head>
-	<body>
+  </head>
+
+  <body>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
   	<div class="container">
@@ -29,9 +31,13 @@
       <!-- navbar Links to go to the different libraries -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="chops_etudes.php">Etudes</a></li>
-          <li><a href="chops_videos.php">Videos</a></li>
-          <li><a href="chops_audio.php">Audio</a></li>
+
+          <li><a href="library.php?table=chops_etudes">Etudes</a></li>
+           
+          <li><a href="library.php?table=chops_videos">Videos</a></li>
+
+          <li><a href="library.php?table=chops_audio">Audio</a></li>
+
           <li><a href="chops_rudiments.php">Rudiments</a></li>
 
         </ul>
@@ -43,6 +49,10 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
+      <ul class="nav navbar-nav">
+      <li><a href="about.php">About</a></li>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
 		    <p class="navbar-text navbar-right"><a href="logout.php" class="navbar-link"> Sign out </a></p> 
 		    <p class="navbar-text navbar-right">Signed in as <a href="update_user.php" class="navbar-link"> <?= $person ?></a></p>
@@ -52,13 +62,5 @@
   </div><!-- /.container-fluid -->
   </nav>
 
-    <!-- Greyed "Intro/Welcome" area below navbar -->
-    <div class="jumbotron">
-        <div class="container">
-          <h1>Welcome to Chops!</h1>
-          <p>Learn. Practice. Repeat.</p>
-        </div>
-    </div>
-
-  </body>
+</body>
 </html>
