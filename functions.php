@@ -55,6 +55,15 @@
 	}
 
 
+	//get the audio's BPM from the library tables
+	function get_audio_bpm($id, $conn)
+	{
+		$query = "SELECT BPM FROM chops_audio WHERE id = '$id'";
+		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+		return $result[0];
+	}
+
+
 	//library_builder helper function -- Adds the starting html
 	function html_starter()
 	{
@@ -90,6 +99,86 @@
 		}
 	}
 
+
+	//for use in the library builder --- ETUDES
+	function display_Etudes($counter, $table, $conn)
+	{
+		//thumbnail image
+  		echo "<img src=";
+  		echo get_file_address($counter, $table, $conn); 
+  		// The space inbetwee the open " and the alt='Etude' is IMPORTANT
+  		echo " alt='Etude' style='width:242px; height:200px;'>";
+     	echo "<div class='caption'>";
+
+     	//Etude Title
+        echo "<h3>";
+        echo get_file_name($counter, $table, $conn); 
+        echo "</h3>";
+
+        //Etude Composer
+    	echo "<p>Composer:";
+    	echo get_file_composer($counter, $conn); 
+    	echo "</p>";
+
+    	//Link to access JPG image of the Etude
+    	echo "<p><a href=";
+    	echo get_file_address($counter, $table, $conn);
+    	// The space inbetwee the open " and the class='bin is IMPORTANT
+    	echo " class='btn btn-primary' role='button'>Check it out!</a></p>";
+	}
+
+
+	//for use in the library builder --- AUDIO
+	function display_Audio($counter, $table, $conn)
+	{
+		//Audio player
+  		echo "<audio controls> <source src=";
+  		echo get_file_address($counter, $table, $conn); 
+  		// The space inbetwee the open " and the type='audio' is IMPORTANT
+  		echo " type='audio/wav'> 
+  		Your browser does not support the audio element.	
+		</audio>;";
+     	echo "<div class='caption'>";
+
+     	//Audio's Title
+        echo "<h3>";
+        echo get_file_name($counter, $table, $conn); 
+        echo "</h3>";
+
+        //Audio's BPM
+    	echo "<p>";
+    	echo get_audio_bpm($counter, $conn); 
+    	echo " BPM</p>";
+
+	}
+
+
+
+	//for use in the library builder --- ETUDES
+	function display_Videos($counter, $table, $conn)
+	{
+		//Video thumbnail
+  		echo "<video width='320' height='240' controls>
+  		<source src=";
+  		echo get_file_address($counter, $table, $conn); 
+  		// The space inbetwee the open " and the alt='Etude' is IMPORTANT
+  		echo " type='video/mp4'>
+  		Your browser does not support the video tag.
+		</video>";
+     	echo "<div class='caption'>";
+
+     	//Video Title
+        echo "<h3>";
+        echo get_file_name($counter, $table, $conn); 
+        echo "</h3>";
+
+    	//Link to access video player
+    	echo "<p><a href=";
+    	echo get_file_address($counter, $table, $conn);
+    	// The space inbetwee the open " and the class='bin is IMPORTANT
+    	echo " class='btn btn-primary' role='button'>Check it out!</a></p>";
+	}
+	            
 	//more functions go here...
 
 ?>
