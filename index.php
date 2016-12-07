@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <?= get_Favorites($id, $conn) ?>
+    <?= get_Favorites($id, 'chops_etudes', $conn); ?>
 
 
 

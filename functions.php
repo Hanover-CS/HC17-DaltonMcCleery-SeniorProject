@@ -64,6 +64,15 @@
 	}
 
 
+	//get the rudiment_id from the library table
+	function get_rudiment_id($id, $table, $conn)
+	{
+		$query = "SELECT rudiment_id FROM $table WHERE id = '$id'";
+		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+		return $result[0];
+	}
+
+
 	//library_builder helper function -- Adds the starting html
 	function html_starter()
 	{
@@ -84,16 +93,62 @@
 	}
 
 
+	//thumbnail builder template
+	function thumbnail_open()
+	{
+
+		echo "<html>
+  				<body>
+        			<div class='col-sm-6 col-md-4'>
+      	  				<div class='thumbnail'>";
+	}
+
+
+	//thumbnail builder back-end
+	function thumbnail_close()
+	{
+		echo "  	</div>
+    			</div>
+  			</body>
+		</html>";
+	}
+
+
+	//Favorite Button
+	function favorite($file, $conn)
+	{
+		$query = "SELECT file, student_id FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id";
+   		$result = mysqli_query($conn, $query);
+
+   		if ($result)
+   		{
+   			echo "<button type='button' class='btn btn-default btn-lg'>
+    			<span class='glyphicon glyphicon-star' aria-hidden='true'></span> Favorited </button>";
+   		} else {
+   				echo "<button type='button' class='btn btn-default btn-lg'>
+    				<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span> Favorite! </button>";
+   				}
+		
+
+	}
+
+
 	//get Favorites section
-	function get_Favorites($id, $conn)
+	function get_Favorites($id, $table, $conn)
 	{
 		// --- FIX THIS ---
-		$query = "SELECT * FROM chops_favorites JOIN chops_students as s ON s.id = student_id JOIN chops_etudes as e ON e.id = file_id";
+		$query = "SELECT * FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id JOIN $table as t ON t.file = f.file";
 		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
 
 		if ($result)
 		{
-			return $result[0];
+			if ($table == 'chops_etudes')
+			{
+				thumbnail_open();
+				favorite($result[3], $conn);
+				display_Etudes($result[0], 'chops_etudes', $conn);
+				thumbnail_close();
+			}
 		} else {
 			echo "<center><h5>You don't have anything Favorited yet! Check out the content Libraries above!</h5></center>";
 		}
@@ -172,11 +227,16 @@
         echo get_file_name($counter, $table, $conn); 
         echo "</h3>";
 
+        //Video's Rudiment
+    	echo "<p> Rudiment Presented: ";
+    	echo get_rudiment_id($counter, $table, $conn); 
+    	echo "</p>";
+
     	//Link to access video player
     	echo "<p><a href=";
     	echo get_file_address($counter, $table, $conn);
     	// The space inbetwee the open " and the class='bin is IMPORTANT
-    	echo " class='btn btn-primary' role='button'>Check it out!</a></p>";
+    	echo " class='btn btn-primary' role='button'>Click Here for Full Screen</a></p>";
 	}
 	            
 	//more functions go here...
