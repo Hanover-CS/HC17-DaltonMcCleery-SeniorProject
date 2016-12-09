@@ -1,3 +1,10 @@
+<?php
+   session_start();
+
+   $user = $_SESSION['username'];
+   $name = $_SESSION['fname'];
+?>
+
 <!DOCTYPE html>
 <html>
    
@@ -16,12 +23,13 @@
             <div style = "margin:30px">
                
                <form action = "" method = "POST">
-                  <label>Username  :</label><input type = "text" name = "username" class = "box" /><br>
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br>
-                  <label>Name  :</label><input type = "fname" name = "fname" class = "box" /><br>
+                  <label>Username  :</label><input type = "text" name = "username" placeholder = "<?= $user ?>" class = "box" /><br>
+                  <label>Password  :</label><input type = "password" name = "password" placeholder = "password" class = "box" /><br>
+                  <label>Name  :</label><input type = "text" name = "fname" placeholder = "<?= $name ?>" class = "box" /><br>
 
                   <input type = "submit" value = " Submit "/>
-                  <input type = "submit" value = " Delete " method = "del"/><br>
+                  <input type = "submit" value = " Delete " method = "del"/>
+                  <input class="button" type="button" onclick="window.location.replace('index.php')" value="Cancel" />
 
                   <!-- <p>Not registered yet? <a href='signup.php'>Sign Up Here</a></p> -->
                </form>

@@ -1,5 +1,4 @@
 <?php
-   session_start();
    require_once 'dbconnect.php';
    require_once 'update_screen.html';
    include 'functions.php';
@@ -15,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    //get ID field based on previous information BEFORE the update
    $user = $_SESSION['username'];
    $pass = $_SESSION['password'];
-   $ID = get_id('$user', '$pass');
+   $ID = get_id($user, $pass, $conn);
 
    //MySQL Update Query
    $query = "UPDATE chops_students SET username='$username', password='$password', fname='$fname' WHERE id= '$ID'";
@@ -33,8 +32,8 @@ if($result) {
       die ("Unsuccessful Update, Please Try Again.");
       }
 
-} else if ($_SERVER["REQUEST_METHOD"] == "del") {
+   // else if ($_SERVER["REQUEST_METHOD"] == "del") {
 
-   echo "Delete?";
+   // echo "Delete?";
 
 }?>
