@@ -55,6 +55,15 @@
 	}
 
 
+	//get the etude page number (if any)
+	function get_page_num($id, $conn)
+	{
+		$query = "SELECT page FROM chops_etudes WHERE id = '$id'";
+		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+		return $result[0];
+	}
+
+
 	//get the audio's BPM from the library tables
 	function get_audio_bpm($id, $conn)
 	{
@@ -96,7 +105,6 @@
 	//thumbnail builder template
 	function thumbnail_open()
 	{
-
 		echo "<html>
   				<body>
         			<div class='col-sm-6 col-md-4'>
@@ -107,17 +115,17 @@
 	//thumbnail builder back-end
 	function thumbnail_close()
 	{
-		echo "  	</div>
-    			</div>
-  			</body>
-		</html>";
+		echo "  		</div>
+    				</div>
+  				</body>
+			</html>";
 	}
 
 
 	//Favorite Button
 	function favorite($file, $conn)
 	{
-		$query = "SELECT file, student_id FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id";
+		$query = "SELECT $file, student_id FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id";
    		$result = mysqli_query($conn, $query);
 
    		if ($result)
@@ -145,7 +153,7 @@
 			if ($table == 'chops_etudes')
 			{
 				thumbnail_open();
-				favorite($result[3], $conn);
+				favorite($result[0], $conn);
 				display_Etudes($result[0], 'chops_etudes', $conn);
 				thumbnail_close();
 			}
@@ -174,6 +182,15 @@
     	echo "<p>Composer:";
     	echo get_file_composer($counter, $conn); 
     	echo "</p>";
+
+
+    	$page = get_page_num($counter, $conn);
+    	if ($page)
+    	{
+    		//Page #
+    		echo "Page: ";
+    		echo $page;
+    	}
 
     	//Link to access JPG image of the Etude
     	echo "<p><a href=";
