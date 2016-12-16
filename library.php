@@ -6,13 +6,14 @@
 
   //determines which database table to grab from
 	$table = $_GET['table'];
+  $ID = get_id($_SESSION['username'], $_SESSION['password'], $conn);
 
   html_starter();
 ?>
 
 <html>
   <body>
-
+  <div class="jumbotron">
     <div class="container">
       <div class="row">
 
@@ -33,18 +34,17 @@
         <div class="col-sm-6 col-md-4">
       	  <div class="thumbnail">
 
-            <!-- Favorite Option -->
-			      <button type="button" class="btn btn-default btn-lg">
-    			  <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Favorite! 
-            </button>  
+            <?php favorite_button( (get_file_address($counter, $table, $conn)), $table, $ID, $conn);  
 
-            <?php if ($table == "chops_etudes")
+            if ($table == "chops_etudes")
             {
               display_Etudes($counter, $table, $conn);
-            } else if ($table == "chops_audio")
+            } 
+            else if ($table == "chops_audio")
             {
               display_Audio($counter, $table, $conn);
-            } else {
+            } 
+            else {
               display_Videos($counter, $table, $conn);
             } ?>
 
@@ -63,5 +63,6 @@
 
     </div>
 	  </div>
+    </div>
   </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+	//session_start();
 	require_once 'dbconnect.php';
 
 	//get the file address from the library tables
@@ -82,6 +83,19 @@
 	}
 
 
+	//get the user's ID by using their username and password
+	function get_file_id($file, $table, $conn)
+	{
+   		$get_id = "SELECT id FROM $table WHERE file= '$file'";
+
+   		//execute then convert the get query into an array
+   		$result = mysqli_fetch_array(mysqli_query($conn, $get_id));
+   
+   		//then access the 'id' field of that array from the query
+   		return $result[0];
+	}
+
+
 	//library_builder helper function -- Adds the starting html
 	function html_starter()
 	{
@@ -123,42 +137,72 @@
 
 
 	//Favorite Button
-	function favorite($file, $conn)
+	function favorite_button($file, $table, $ID, $conn)
 	{
-		$query = "SELECT $file, student_id FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id";
-   		$result = mysqli_query($conn, $query);
-
-   		if ($result)
+		$query = "SELECT file FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id WHERE s.id = $ID";
+   		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+   		
+   		for ($fav_count = 0; $fav_count < (count($result))-1; $fav_count++)
    		{
-   			echo "<button type='button' class='btn btn-default btn-lg'>
-    			<span class='glyphicon glyphicon-star' aria-hidden='true'></span> Favorited </button>";
-   		} else {
-   				echo "<button type='button' class='btn btn-default btn-lg'>
-    				<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span> Favorite! </button>";
-   				}
-		
 
+   			if ($file == $result[$fav_count])
+   			{
+   				echo "<button type='button' class='btn btn-default btn-lg'>
+    				<span class='glyphicon glyphicon-star' aria-hidden='true'></span> Favorited </button>";
+   			} 
+   		}
+
+   		if ($file != $result[0])
+   		{
+   					echo "<form action = 'add_Favorites.php' method = 'POST'>
+               			<button type='button' class='btn btn-default btn-lg'>
+    			  			<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                  			<input type = 'submit' value = ' Favorite! '/></button>";
+                  			$_SESSION['file'] = $file;
+                  			$_SESSION['table'] = $table;
+               		echo "</form>";
+   		}
 	}
 
 
+	//Add a file to Favorites
+	function add_Favorite($file, $ID, $file_id, $conn)
+	{
+		$query = "INSERT INTO chops_favorites (student_id, file_id, file) VALUES ($ID, $file_id, '$file')";
+		$result = mysqli_query($conn, $query);
+
+		if (!$result)
+		{
+			echo "alert ('Cannot Add to Favorites at this time!')";
+		}
+	}
+
+
+
+
 	//get Favorites section
-	function get_Favorites($id, $table, $conn)
+	function get_Favorites($ID, $table, $conn)
 	{
 		// --- FIX THIS ---
-		$query = "SELECT * FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id JOIN $table as t ON t.file = f.file";
+		$query = "SELECT f.file, f.file_id FROM chops_favorites as f 
+					JOIN chops_students as s ON s.id = f.student_id 
+					JOIN $table as t ON t.file = f.file 
+					WHERE f.student_id = $ID";
+
 		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
+
 
 		if ($result)
 		{
 			if ($table == 'chops_etudes')
 			{
 				thumbnail_open();
-				favorite($result[0], $conn);
-				display_Etudes($result[0], 'chops_etudes', $conn);
+				favorite_button($result[0], $table, $ID, $conn);
+				display_Etudes($result[1], 'chops_etudes', $conn);
 				thumbnail_close();
 			}
 		} else {
-			echo "<center><h5>You don't have anything Favorited yet! Check out the content Libraries above!</h5></center>";
+			echo "<center><h5>You don't have anything <font color = 'red'>Favorited</font> yet! Check out the content Libraries above!</h5></center>";
 		}
 	}
 
@@ -174,12 +218,12 @@
      	echo "<div class='caption'>";
 
      	//Etude Title
-        echo "<h3>";
+        echo '<h3>"';
         echo get_file_name($counter, $table, $conn); 
-        echo "</h3>";
+        echo '"</h3>';
 
         //Etude Composer
-    	echo "<p>Composer:";
+    	echo "<p>Composer: ";
     	echo get_file_composer($counter, $conn); 
     	echo "</p>";
 
@@ -188,8 +232,9 @@
     	if ($page)
     	{
     		//Page #
-    		echo "Page: ";
+    		echo "<p>Page: ";
     		echo $page;
+    		echo "</p>";
     	}
 
     	//Link to access JPG image of the Etude
@@ -226,7 +271,7 @@
 
 
 
-	//for use in the library builder --- ETUDES
+	//for use in the library builder --- VIDEOS
 	function display_Videos($counter, $table, $conn)
 	{
 		//Video thumbnail
