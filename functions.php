@@ -154,12 +154,12 @@
 
    		if ($file != $result[0])
    		{
-   					echo "<form action = 'add_Favorites.php' method = 'POST'>
+   					echo "<form action = 'add_Favorites.php?table='"; echo $table; echo "method = 'POST'>
                			<button type='button' class='btn btn-default btn-lg'>
     			  			<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                  			<input type = 'hidden' name = 'file' value = '$file'/>
+                  			<input type = 'hidden' name = 'table' value = '$table'/>
                   			<input type = 'submit' value = ' Favorite! '/></button>";
-                  			$_SESSION['file'] = $file;
-                  			$_SESSION['table'] = $table;
                		echo "</form>";
    		}
 	}
@@ -175,6 +175,9 @@
 		{
 			echo "alert ('Cannot Add to Favorites at this time!')";
 		}
+
+		header("Location: index.php");
+
 	}
 
 
@@ -299,6 +302,31 @@
     	echo get_file_address($counter, $table, $conn);
     	// The space inbetwee the open " and the class='bin is IMPORTANT
     	echo " class='btn btn-primary' role='button'>Click Here for Full Screen</a></p>";
+	}
+
+
+	//Building the "homepage" for the Rudiments
+	function display_Rudi($counter, $table, $conn)
+	{
+		$file = get_file_address($counter, $table, $conn);
+
+		//Rudiment preview thumbnail
+		echo "<img src=";
+  		echo $file; 
+  		// The space inbetwee the open " and the alt='Rudiment' is IMPORTANT
+  		echo " alt='Rudiment' style='width:242px; height:200px;'>";
+     	echo "<div class='caption'>";
+
+     	//Rudiment
+    	echo "<h3> Rudiment #";
+    	echo get_file_id($file, $table, $conn); 
+    	echo "</h3>";
+
+    	//Link to access Rudiment page
+    	echo "<p><a href=rudiment.php?id="; echo $counter; //--- FIX THIS ---
+    	//echo get_rudi_page($counter, $table, $conn);
+    	// The space inbetwee the open " and the class='bin is IMPORTANT
+    	echo " class='btn btn-primary' role='button'>Click Here to learn this Rudiment</a></p>";
 	}
 	            
 	//more functions go here...
