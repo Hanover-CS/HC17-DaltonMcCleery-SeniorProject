@@ -1,7 +1,8 @@
 <?php
 
   session_start();
-  //include 'login.php';
+  include 'functions.php';
+  require 'dbconnect.php';
 
   $person = $_SESSION['fname'];
   //echo $person;

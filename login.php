@@ -7,11 +7,6 @@
 	require_once 'log_screen.html';
 	include 'functions.php';
 
-	echo "		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-
-    			<!-- Bootstrap -->
-    			<link href='css/bootstrap.min.css' rel='stylesheet' media='screen'>";
-
 //check if forum has already been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -36,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$_SESSION['username'] = $username;
 			$_SESSION['password'] = $password;
 			$_SESSION['fname'] = $store_res['fname'];
-			//$_SESSION['logged_in'] = 1;
+			//$_SESSION['ID'] = get_id();
 			//$_SESSION['fname'] = get_fname($username, $conn);
 
 
@@ -46,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 						
 			} else {
 				//if they dont, throw an error
-				die ("<div class='alert alert-warning' role='alert'> Cannot Find User! </div>");
+				die ("<div class='alert alert-warning' role='alert'> Incorrect Login! </div>");
 				} 
 		
 		} else {

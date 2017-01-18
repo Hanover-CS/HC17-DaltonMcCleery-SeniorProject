@@ -1,8 +1,8 @@
 <?php
 	include 'navbar.php';
-	require_once 'dbconnect.php';
+
 	//include 'something else stylish.html';
-	include 'functions.php';
+
 
 	html_starter();
 	$id = get_id($_SESSION['username'], $_SESSION['password'], $conn)

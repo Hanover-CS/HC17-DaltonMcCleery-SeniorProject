@@ -1,7 +1,4 @@
 <?php
-	require_once 'dbconnect.php';
-
-  include 'functions.php';
   include 'navbar.php';
 
   //determines which database table to grab from
