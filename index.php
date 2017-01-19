@@ -5,7 +5,7 @@
 
 
 	html_starter();
-	$id = get_id($_SESSION['username'], $_SESSION['password'], $conn)
+	$ID = get_id($_SESSION['username'], $_SESSION['password'], $conn)
 ?>
 <html>
 
@@ -19,9 +19,8 @@
         </div>
     </div>
 
-    <?= get_Favorites($id, 'chops_etudes', $conn); ?>
-
-
+    <!-- FIX THIS so it can work with all tables at once -->
+    <?= get_Favorites($ID, 'chops_etudes', $conn); ?>
 
 
 	</body>

@@ -136,15 +136,17 @@
 	}
 
 
-	//Favorite Button
+	//The Favorite Button
 	function favorite_button($file, $table, $ID, $conn)
-	{
+	{	
+		//this gets the file(s) from the Favorites table that matches the currently logged in student and see if they have Favorited it or not.
 		$query = "SELECT file FROM chops_favorites as f JOIN chops_students as s ON s.id = f.student_id WHERE s.id = $ID";
    		$result = mysqli_fetch_array( mysqli_query($conn, $query) );
    		
+   		//goes through all the file in the Favorites table that match the current student
    		for ($fav_count = 0; $fav_count < (count($result))-1; $fav_count++)
    		{
-
+   			//if the file IS Favorited by the currently logged in student, then the Icon on the thumbnail changes to say "Favorited"
    			if ($file == $result[$fav_count])
    			{
    				echo "<button type='button' class='btn btn-default btn-lg'>
@@ -152,15 +154,27 @@
    			} 
    		}
 
+   		//if the file is NOT Favorited by the current student, then it adds the Favorite button.
    		if ($file != $result[0])
-   		{
-   					echo "<form action = 'add_Favorites.php?table='"; echo $table; echo "method = 'POST'>
-               			<button type='button' class='btn btn-default btn-lg'>
-    			  			<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
-                  			<input type = 'hidden' name = 'file' value = '$file'/>
-                  			<input type = 'hidden' name = 'table' value = '$table'/>
-                  			<input type = 'submit' value = ' Favorite! '/></button>";
+   		{			
+   					//this echo's a pre-built HTML form with all the nessecary info about the file in question.
+
+   					//the first three lines indicate that it should run the file add_Favorites.php with extra info in the address bar
+   					//that shows what file table we're in (Etudes, Video, Audio).
+   					echo "<form action = 'add_Favorites.php?table='"; 
+   					echo $table; 
+   					echo "method = 'POST'>
+               				<button type='button' class='btn btn-default btn-lg'>
+    			  				<span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span>
+                  					<input type = 'hidden' name = 'file' value = '$file'/>
+                  					<input type = 'hidden' name = 'table' value = '$table'/>
+                  				<input type = 'submit' value = ' Favorite! '/></button>";
                		echo "</form>";
+
+               		//the last two echo statments build an HTML form and populate it's HIDDEN inputs with the file address and the table info.
+               		//when these echo statments get executed it turns them into actual HTML code and all the forms are created, waiting to for the
+               		//user to run or "SUBMIT" them (AKA Favorite). Once they are submitted, the workload is handed off to the add_Favorites file,
+               		//where the actual work of inserted the selected file into a student's Favorites section. 
    		}
 	}
 
@@ -168,6 +182,8 @@
 	//Add a file to Favorites
 	function add_Favorite($file, $ID, $file_id, $conn)
 	{
+		//this function is run inside the add_Favorites file. It inserts the selected file into the Favorites table under the student_id 
+		//of the logged in user.
 		$query = "INSERT INTO chops_favorites (student_id, file_id, file) VALUES ($ID, $file_id, '$file')";
 		$result = mysqli_query($conn, $query);
 
@@ -176,6 +192,7 @@
 			echo "alert ('Cannot Add to Favorites at this time!')";
 		}
 
+		//if successfull, this will take the user back to the homepage and display the newly added file in their Favorites section.
 		header("Location: index.php");
 
 	}

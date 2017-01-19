@@ -50,6 +50,8 @@
     	    </div>
         </div>
 
+      <!-- This is used to determine if/when a row should end. A row should only be 3 items, enough to fit nicely on a page.
+      When the 3 item limit is reached, it closes that row's div tag and opens another row. -->
       <?php  if ($counter % 3 == 0) {	?>
 
    		</div>
