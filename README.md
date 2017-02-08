@@ -24,74 +24,62 @@ What things you need to install and a step by step series of examples of how to 
 
 Step 1: download the folder 'Chops'. Make sure it has these components;
 
-```
-Database folder with setup_db.sql, dbconnect.php, and dummy_server.php.
-```
-```
-Login Folder with login.php, logout.php, signup.php, update_user.php, log_screen.html, signup_screen.html, and update_screen.html.
-```
-```
-Library Folder with library_builder.php, chops_rudiments.php, and rudiment.php.
-```
-```
-Functions folder with functions.php, person.php, library.php, and add_Favorites.php.
-```
-```
-Tests folder with chops_tests.php
-```
-```
-And finally, not in any folder, index.php and navbar.php.
-```
+- Database folder with setup_db.sql, dbconnect.php, and dummy_server.php.
+- Login Folder with login.php, logout.php, signup.php, update_user.php, log_screen.html, signup_screen.html, and update_screen.html.
+- Library Folder with library_builder.php, chops_rudiments.php, and rudiment.php.
+- Functions folder with functions.php, person.php, library.php, and add_Favorites.php.
+- Tests folder with chops_tests.php
+- And finally, not in any folder, index.php and navbar.php.
 
 Step 2: Initialize server.
 
-	1. Open the file dummy_server.php in the Database folder
-	2. Input your local serverhost name, username, password, and servername.
-		```
-		Ex. $serverhost = "localhost"; $username = "root"; $password = "password"; $servername = "Name";
-		```
-	3. Make sure that the `require dummy_server.php` line is NOT commented out and the `require parameters.php` line IS.
+- 1. Open the file dummy_server.php in the Database folder
+- 2. Input your local serverhost name, username, password, and servername.
+	```
+	Ex. $serverhost = "localhost"; $username = "root"; $password = "password"; $servername = "Name";
+	```
+- 3. Make sure that the `require dummy_server.php` line is NOT commented out and the `require parameters.php` line IS.
 
 
 Step 3: Run the setup_db file.
 
-	Way 1 with MySQL workbench:
+Way 1 with MySQL workbench:
 
-	1. Open MySQL Workbench and create a connection to where your server is located. 
-		```
-		Ex. If your server is the Localhost WAMP server, set the hostname to your local IP address, leave the port as default, the username to root, and set the password to your server's password.
-		```
-	2. Open a new SQL file
-	3. Import or Copy and Paste the setup_db.sql file contents into the current empty file on the Workbench.
-	4. Run the file by selecting everything and clicking the `Yellow Lighting Bolt` up near the top of the file's quickbar.
+- 1. Open MySQL Workbench and create a connection to where your server is located. 
+	```
+	Ex. If your server is the Localhost WAMP server, set the hostname to your local IP address, leave the port as default, the username to root, and set the password to your server's password.
+	```
+- 2. Open a new SQL file
+- 3. Import or Copy and Paste the setup_db.sql file contents into the current empty file on the Workbench.
+- 4. Run the file by selecting everything and clicking the `Yellow Lighting Bolt` up near the top of the file's quickbar.
 
-	Way 2:
+Way 2:
 
-	1. Open the MySQL command line.
-	2. Type the path of your mysql bin directory and press Enter.
-	3. Paste your SQL file inside the bin folder of mysql server.
-	4. Create a database in MySQL.
-	5. Use that particular database where you want to import the SQL file.
-	6. Type source databasefilename.sql and Enter.
-	7. Your SQL file upload successfully.
+- 1. Open the MySQL command line.
+- 2. Type the path of your mysql bin directory and press Enter.
+- 3. Paste your SQL file inside the bin folder of mysql server.
+- 4. Create a database in MySQL.
+- 5. Use that particular database where you want to import the SQL file.
+- 6. Type source databasefilename.sql and Enter.
+- 7. Your SQL file upload successfully.
 
 
 Step 4: Run the application.
 
-	1. Place the Chops folder where your server and the database can easily access it's contents.
-	2. Open the file path to /login.php in your browser.
-	3. Create or Login to your account and begin practing for your next big performance!
+- 1. Place the Chops folder where your server and the database can easily access it's contents.
+- 2. Open the file path to /login.php in your browser.
+- 3. Create or Login to your account and begin practing for your next big performance!
 
 
 
-##Demo
+## Demo
 
-	1. Login or Create your account. (There is a default account already built in. Access this by typing `student` in the username field and `password` in the password field).
-	2. This will take you to the Homepage and your Favorites section. There isn't anything there initally, let's change that.
-	3. click on the Audio tab in the top left corner of the navigation bar.
-	4. Scroll down until you see an item box with the title: "Beatles Medley". Have a listen, I made it myself!
-	5. Select the Favorite button on the top left of the item box.
-	6. From here, you can go back to the Homepage and see that Audio item in your Favorites section.
+- 1. Login or Create your account. (There is a default account already built in. Access this by typing `student` in the username field and `password` in the password field).
+- 2. This will take you to the Homepage and your Favorites section. There isn't anything there initally, let's change that.
+- 3. click on the Audio tab in the top left corner of the navigation bar.
+- 4. Scroll down until you see an item box with the title: "Beatles Medley". Have a listen, I made it myself!
+- 5. Select the Favorite button on the top left of the item box.
+- 6. From here, you can go back to the Homepage and see that Audio item in your Favorites section.
 
 ## Running the tests
 
