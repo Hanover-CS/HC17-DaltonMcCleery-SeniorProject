@@ -2,6 +2,6 @@
    session_start();
    
    if(session_destroy()) {
-      header("Location: login.php");
+      header("Location: /chops/hc07-Chops/Login/login.php");
    }
 ?>

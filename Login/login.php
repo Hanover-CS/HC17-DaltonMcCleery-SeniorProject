@@ -1,11 +1,11 @@
 <?php
 	session_start();
 
-//connect to database
-	require_once 'dbconnect.php';
+	//connect to database
+ 	require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Database/dbconnect.php';
+  	include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Functions/functions.php';
 	
 	require_once 'log_screen.html';
-	include 'functions.php';
 
 //check if forum has already been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 			//if everything matches correctly, take them to the homepage
-			header("Location: index.php");
+			header("Location: ./../index.php");
 						
 			} else {
 				//if they dont, throw an error

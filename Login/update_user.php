@@ -1,7 +1,9 @@
 <?php
-   require_once 'dbconnect.php';
+
+   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
+   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
+
    require_once 'update_screen.html';
-   include 'functions.php';
 
 //check if forum has already been submitted
 if($_SERVER["REQUEST_METHOD"] == "POST") {
