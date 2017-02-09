@@ -1,9 +1,9 @@
 <?php
  
-  //session_start();
+  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
+
  
-  require_once 'dbconnect.php';
- 
+  // -- WORK ON IMPLEMENTING A CLASS/OBJECT-ORIENTED APPROACH TO THIS -- //
 
  
   //get the file address from the library tables
@@ -224,7 +224,7 @@
  
           <!-- Bootstrap -->
  
-          <link href='css/bootstrap.min.css' rel='stylesheet' media='screen'>
+          <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
  
         </head>";
  

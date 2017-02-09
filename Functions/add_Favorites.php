@@ -1,6 +1,6 @@
 <?php
  
-  require_once 'dbconnect.php';
+  require_once './../Database/dbconnect.php';
  
   include 'navbar.php';
  
