@@ -1,6 +1,6 @@
 <?php
  
-    include 'navbar.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/navbar.php';
  
 
  

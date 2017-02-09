@@ -1,23 +1,17 @@
 <?php
- 
-  include 'navbar.php';
- 
+
+  //include the navbar, which in turn haas access to the functions file and connection to the database
+  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/navbar.php';
 
  
   //determines which database table to grab from
- 
   $table = $_GET['table'];
- 
   $ID = get_id($_SESSION['username'], $_SESSION['password'], $conn);
- 
-
  
   html_starter();
  
 ?>
- 
 
- 
 <html>
  
   <body>
@@ -31,8 +25,6 @@
 
  
       <?php
- 
-
  
       //used to make sure not to generate more visual blocks than needed
  
@@ -48,9 +40,6 @@
  
         $length = 10; }
  
-
- 
-
  
       for ($counter = 1; $counter <= $length; $counter++) 
  
@@ -62,36 +51,23 @@
  
           <div class="thumbnail">
  
-
- 
             <?php favorite_button( (get_file_address($counter, $table, $conn)), $table, $ID, $conn);  
- 
-
  
             if ($table == "chops_etudes")
  
             {
- 
               display_Etudes($counter, $table, $conn);
- 
             } 
  
             else if ($table == "chops_audio")
  
             {
- 
               display_Audio($counter, $table, $conn);
- 
             } 
  
             else {
- 
               display_Videos($counter, $table, $conn);
- 
             } ?>
- 
-
- 
 
  
             </div>
@@ -108,18 +84,11 @@
  
       <?php  if ($counter % 3 == 0) {  ?>
  
-
- 
        </div>
  
      <div class="row">
  
-        
- 
-
- 
      <?php  }} ?>
- 
 
  
     </div>
