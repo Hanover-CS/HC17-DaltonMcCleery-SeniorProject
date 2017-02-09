@@ -1,4 +1,5 @@
 <?php
+
 	include 'navbar.php';
 
 	//include 'something else stylish.html';
