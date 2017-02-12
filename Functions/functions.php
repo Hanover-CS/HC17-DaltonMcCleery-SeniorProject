@@ -2,6 +2,8 @@
  
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
 
+  require 'student_class.php';
+
  
   // -- WORK ON IMPLEMENTING A CLASS/OBJECT-ORIENTED APPROACH TO THIS -- //
 
