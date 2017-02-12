@@ -359,49 +359,6 @@
   }
  
 
- 
-
- 
-  //Add a file to Favorites
- 
-  function add_Favorite($file, $ID, $file_id, $conn)
- 
-  {
- 
-    //this function is run inside the add_Favorites file. It inserts the selected file into the Favorites table under the student_id 
- 
-    //of the logged in user.
- 
-    $query = "INSERT INTO chops_favorites (student_id, file_id, file) VALUES ($ID, $file_id, '$file')";
- 
-    $result = mysqli_query($conn, $query);
- 
-
- 
-    if (!$result)
- 
-    {
- 
-      echo "alert ('Cannot Add to Favorites at this time!')";
- 
-    }
- 
-
- 
-    //if successfull, this will take the user back to the homepage and display the newly added file in their Favorites section.
- 
-    header("Location: index.php");
- 
-
- 
-  }
- 
-
- 
-
- 
-
- 
 
  
   //get Favorites section
