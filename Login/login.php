@@ -13,8 +13,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	//get and store user creds from the forum
 	$username = mysqli_real_escape_string($conn, $_POST['username']);
 	$password = mysqli_real_escape_string($conn, $_POST['password']);
-	$query = "SELECT * FROM chops_students WHERE username= '$username' and password= '$password'";
-	//echo $query;
+	$query = "SELECT * FROM chops_students WHERE username = '$username' and password = '$password'";
+
 	$result = mysqli_query($conn, $query);
  	$count = mysqli_num_rows($result);
 
@@ -27,13 +27,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 			if ($username != $store_res['username'])
 				{ echo "<div class='alert alert-warning' role='alert'> FAKE </div>"; }
-			//set session variables
+
+
+			//$student = new Student($store_res['fname'], $username, $password);
+			//$_SESSION['student'] = new Student($store_res['fname'], $username, $password);
+
 			$_SESSION['username'] = $username;
 			$_SESSION['password'] = $password;
 			$_SESSION['fname'] = $store_res['fname'];
-			//$_SESSION['ID'] = get_id();
-			//$_SESSION['fname'] = get_fname($username, $conn);
-
 
 
 			//if everything matches correctly, take them to the homepage

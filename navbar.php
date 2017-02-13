@@ -3,9 +3,10 @@
   session_start();
 
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
+  //include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
 
-  $person = $_SESSION['fname'];
+  $student = new Student($_SESSION['fname'], $_SESSION['username'], $_SESSION['password']);
 
 ?>
 
@@ -51,12 +52,13 @@
       </form>
 
       <ul class="nav navbar-nav">
-      <li><a href="about.php">About</a></li>
+      <li><a href="/chops/hc07-chops/about.php">About</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
 		    <p class="navbar-text navbar-right"><a href="/chops/hc07-chops/Login/logout.php" class="navbar-link"> Sign out </a></p> 
-		    <p class="navbar-text navbar-right">Signed in as <a href="/chops/hc07-chops/Login/update_user.php" class="navbar-link"> <?= $person ?></a></p>
+		    <p class="navbar-text navbar-right">Signed in as <a href="/chops/hc07-chops/Login/update_user.php" class="navbar-link"> 
+        <?php echo $student->get_name() ?></a></p>
       </ul>
 
     </div><!-- /.navbar-collapse -->
