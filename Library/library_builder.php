@@ -8,11 +8,18 @@
   $table = $_GET['table'];
   $ID = get_id($_SESSION['username'], $_SESSION['password'], $conn);
  
-  html_starter();
  
 ?>
-
-<html>
+<!DOCTYPE HTML>
+  <html>
+    <head>
+      <title>Chops/User <?php echo $student->get_username(); ?></title>
+ 
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <!-- Bootstrap -->
+        <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+ 
+    </head>
  
   <body>
  

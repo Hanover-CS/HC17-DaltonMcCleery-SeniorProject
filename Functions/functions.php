@@ -2,7 +2,8 @@
  
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
 
-  require 'student_class.php';
+  include 'student_class.php';
+
 
  
   // -- WORK ON IMPLEMENTING A CLASS/OBJECT-ORIENTED APPROACH TO THIS -- //
@@ -195,42 +196,6 @@
 
  
 
- 
-  //library_builder helper function -- Adds the starting html
- 
-  function html_starter()
- 
-  {
- 
-    echo   "<!DOCTYPE HTML>
- 
-          <html>
- 
-
- 
-          <head>
- 
-        <title>Chops/User/";
- 
-
- 
-    echo $_SESSION['username'];
- 
-
- 
-    echo   "</title>
- 
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
- 
-
- 
-          <!-- Bootstrap -->
- 
-          <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
- 
-        </head>";
- 
-  }
  
 
  
