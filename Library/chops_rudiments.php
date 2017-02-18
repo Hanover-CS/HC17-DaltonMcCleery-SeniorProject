@@ -53,18 +53,12 @@
                     <?php display_Rudi($counter, "chops_rudiment", $conn);
  
 
+              echo "</div>
  
+            </div>
+ 
+            </div>";
             } ?>
- 
-
- 
-
- 
-                  </div>
- 
-            </div>
- 
-            </div>
  
 
  
