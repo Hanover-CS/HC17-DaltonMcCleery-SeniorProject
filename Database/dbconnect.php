@@ -14,7 +14,7 @@
  
 //connect to database
  
-  $conn = mysqli_connect($serverhost, $username, $password, $servername);
+  $conn = mysqli_connect($server[0], $server[1], $server[2], $server[3]);
  
 
  
