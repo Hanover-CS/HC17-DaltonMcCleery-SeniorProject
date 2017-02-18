@@ -3,6 +3,7 @@
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
 
   include 'student_class.php';
+  include 'content_class.php';
 
 
  
@@ -207,11 +208,7 @@
  
   {
  
-    echo "<html>
- 
-          <body>
- 
-              <div class='col-sm-6 col-md-4'>
+    echo "    <div class='col-sm-6 col-md-4'>
  
                   <div class='thumbnail'>";
  
@@ -229,11 +226,7 @@
  
     echo "      </div>
  
-            </div>
- 
-          </body>
- 
-      </html>";
+            </div>";
  
   }
  
@@ -291,7 +284,7 @@
  
              //that shows what file table we're in (Etudes, Video, Audio).
  
-             echo "<form action = 'add_Favorites.php?table='"; 
+             echo "<form action = '/chops/hc07-chops/Functions/add_Favorites.php?table='"; 
  
              echo $table; 
  
@@ -344,9 +337,7 @@
  
 
  
-    $result = mysqli_fetch_array( mysqli_query($conn, $query) );
- 
-
+    $result = mysqli_query($conn, $query);
  
 
  
@@ -357,16 +348,29 @@
       if ($table == 'chops_etudes')
  
       {
+
+         echo "<div class='container'>
+                  <div class='row'>";
+
+        while ($row = mysqli_fetch_assoc($result)) {
+
+          // echo ("File  = " . $row['file'] . " File_id = " . $row['file_id'] . " ");
+          // echo (" . . . ");
+        
  
         thumbnail_open();
  
-        favorite_button($result[0], $table, $ID, $conn);
+        favorite_button($row["file"], $table, $ID, $conn);
  
-        display_Etudes($result[1], 'chops_etudes', $conn);
+        display_Etudes($row["file_id"], 'chops_etudes', $conn);
  
         thumbnail_close();
- 
+  
+        echo "</div>";
       }
+
+      echo "</div>";
+    }
  
     } else {
  
