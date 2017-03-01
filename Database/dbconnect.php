@@ -19,6 +19,12 @@
       }
     }
 
+
+    function getConn()
+    {
+    	return $this->conn;
+    }
+
     //This method returns only ONE item from the Database
     //using the $ID as an identifer/row,
     //the $table as to which table to access,
@@ -66,6 +72,17 @@
       }
 
       return $results;
+    }
+
+    //TODO
+    function addToFavorites($values)
+    {
+    	$query = "INSERT INTO chops_favorites (student_id, file_id, file) 
+    						VALUES ($values[0], $values[1], $values[2])";
+
+    	$result = mysqli_query($conn, $query);
+
+    	testForError($result);
     }
 
     //This protected method is used to test if there was

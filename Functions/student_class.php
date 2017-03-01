@@ -60,10 +60,31 @@
 			return $this->password;
 		}
 
+		// --- FAvORITES Section --- //
 
-		function getFavorites()
+		//Returns true if a file IS favorited by a student.
+		//Returns false if it is not. 
+		function checkFavorite($file)
 		{
+			$query = "SELECT $file FROM chops_favorites WHERE student_id = $this->student_id";
 
+			$result = mysqli_fetch_array( mysqli_query($Database->getConn(), $query) );
+
+			if ($result)
+			{
+				return true;
+			}
+
+			return false;
+		}
+
+		//Passed a Content OBJECT, then using the Content Class and the Database Class methods,
+		//it adds a file to the current Student's Favorites section/table. 
+		function addFavorite($Content)
+		{
+			$values = [$this->user_id, $Content->get_file_id(), $Content->get_file_address()];
+
+			$Database->addToFavorites($values);
 		}
 
 	}
