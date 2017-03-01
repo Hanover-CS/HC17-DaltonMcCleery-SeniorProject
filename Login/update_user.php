@@ -18,6 +18,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
    $pass = $_SESSION['password'];
    $ID = get_id($user, $pass, $conn);
 
+   //CHECK TO SEE IF 
+
    //MySQL Update Query
    $query = "UPDATE chops_students SET username='$username', password='$password', fname='$fname' WHERE id= '$ID'";
    $result = mysqli_query($conn, $query);
@@ -28,7 +30,8 @@ if($result) {
          $_SESSION['username'] = $username;
          $_SESSION['password'] = $password;
          $_SESSION['fname'] = $fname;
-   header("Location: index.php");
+
+   header("Location: /chops/hc07-chops/index.php");
 
    } else {
       die ("Unsuccessful Update, Please Try Again.");
