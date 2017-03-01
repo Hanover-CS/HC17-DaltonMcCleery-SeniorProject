@@ -2,14 +2,20 @@
 
   session_start();
  
+  //Database class (dbconnect) and the necessary connection variables (parameters)
+  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
 
+  //Classes
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/content_class.php';
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/favorites_class.php';
 
+
+  //Current logged in Student object
   $student = new Student($_SESSION['fname'], $_SESSION['username'], $_SESSION['password']);
 
+  //Database object that houses the Connection and query methods
   $Database = new Database($server);
 
 
