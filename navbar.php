@@ -1,12 +1,6 @@
 <?php
 
-  session_start();
-
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
-  //include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
-  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
-
-  $student = new Student($_SESSION['fname'], $_SESSION['username'], $_SESSION['password']);
 
 ?>
 

@@ -1,9 +1,16 @@
 <?php
- 
-  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
 
-  include 'student_class.php';
-  include 'content_class.php';
+  session_start();
+ 
+  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
+
+  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
+  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/content_class.php';
+  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/favorites_class.php';
+
+  $student = new Student($_SESSION['fname'], $_SESSION['username'], $_SESSION['password']);
+
+  $Database = new Database($server);
 
 
  
