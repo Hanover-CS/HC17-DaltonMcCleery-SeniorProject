@@ -2,7 +2,7 @@
 
 	class Database {
 
-    public $conn,
+    private $conn;
 
     //$server variable should be an ARRAY with
     //the first element being the server host,
@@ -20,7 +20,7 @@
     }
 
 
-    function getConn()
+    function getConnection()
     {
     	return $this->conn;
     }
@@ -35,9 +35,9 @@
  
       $result = mysqli_fetch_array( mysqli_query($this->conn, $query) );
 
-      testForError($result);
+      Database::testForError($result);
  
-      return $result[0];
+      return $result[$column];
     }
 
     //Same as findOne method except it returns a row of information instead of 1 item.
@@ -47,7 +47,7 @@
  
       $result = mysqli_fetch_array( mysqli_query($this->conn, $query) );
 
-      testForError($result);
+      Database::testForError($result);
  
       return $result[0];
     }
@@ -63,7 +63,7 @@
 
       $result = mysqli_query($this->conn, $query);
 
-      testForError($result);
+      Database::testForError($result);
 
       while ($row = mysqli_fetch_assoc($result)) 
       {
@@ -82,12 +82,12 @@
 
     	$result = mysqli_query($conn, $query);
 
-    	testForError($result);
+    	Database::testForError($result);
     }
 
     //This protected method is used to test if there was
     //an error performing a Database query.
-    protected function testForError($result)
+    private function testForError($result)
     {
       if (!$result)
       {
