@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Accessing Bootstrap -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+  </head>
+
+      <!-- Creating a thumbnail "space" using Bootstrap's divs -->
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+
+          <!-- Video controls used to create a video player in HTML/Bootstrap -->
+          <video width='320' height='240' controls>
+            <source src= {{ address }} alt='Video' type='video/mp4'>
+            Your browser does not support the video element.</video>
+
+              <div class='caption'>
+
+                <h3>{{ name }}</h3>
+
+                <!-- Some Video Content might not have an associated Rudiment ID,
+                so this should only be displayed when that field has a value -->
+                {% if rudiment != null %}
+                  <p>Rudiment Presented: {{ rudiment }}</p>
+                {% endif %}
+
+                <!-- Button to take the user directly to the source video URL to see the Video in fullscreen. -->
+                <p><a href= {{ address }} class='btn btn-primary' role='button'>Click Here for Full Screen</a></p>
+
+              </div>
+        </div>
+      </div>
+</html>

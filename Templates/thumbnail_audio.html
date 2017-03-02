@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Accessing Bootstrap -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+  </head>
+
+      <!-- Creating a thumbnail "space" using Bootstrap's divs -->
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+
+        <!-- Audio controls used to create an audio player in HTML/Bootstrap -->
+          <audio controls>
+            <source src= {{ address }} alt='Audio' type='audio/wav'>
+            Your browser does not support the audio element.</audio>
+
+              <div class='caption'>
+
+                <h3>{{ name }}</h3>
+ 
+                <p>{{ bpm }} BPM</p>
+
+              </div>
+        </div>
+      </div>
+</html>
