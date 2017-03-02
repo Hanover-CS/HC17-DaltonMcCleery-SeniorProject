@@ -3,13 +3,25 @@
   session_start();
  
   //Database class (dbconnect) and the necessary connection variables (parameters)
-  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
+  //NOT NEEDED. require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
 
   //Classes
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/content_class.php';
-  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/favorites_class.php';
+
+  //Twig's enviroment.
+  //The $loader is used to see where to look for templates at.
+  //$twig is the actual enviroment that holds the templates.
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/Chops/vendor/composer/vendor/autoload.php';
+
+  $loader = new Twig_Loader_Filesystem('C:/wamp64/www/Chops/hc07-Chops/Templates');
+  $twig = new Twig_Environment($loader, array(
+      'cache' => 'C:/wamp64/www/Chops/vendor/composer/vendor/twig/twig/test/Twig/Tests',
+  ));
+
+  // Example of how to load/render a template with the identifiers and there values
+  // $twig->render('FILE', array('VARIABLES' => 'VALUES', ... ));
 
 
   //Current logged in Student object
@@ -21,6 +33,9 @@
 
  
   // -- WORK ON IMPLEMENTING A CLASS/OBJECT-ORIENTED APPROACH TO THIS -- //
+
+  // -- EVERYTHING BELOW THIS LINE WILL BE DELETED WHEN CLASS SYSTEM IS FUNCTIONAL -- //
+  // _________________________________________________________________________________//
 
  
   //get the file address from the library tables
