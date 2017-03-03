@@ -42,7 +42,7 @@
 
 
 		//returns the ID associated with a rudiment for compiling files with the same rudiment ID
-		function get_rudiment_id()
+		function getRudimentID()
 		{
 			return Database::connect()->findOne($this->ID, $this->table, 'rudiment_id');			
 		}
