@@ -1,4 +1,7 @@
 <?php
+	
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dummy_server.php';
+  // require_once $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
 
 	class Database {
 

@@ -5,6 +5,8 @@
 	require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Database/dbconnect.php';
 	use \chops\hc07chops\Database\dbconnect;
 	include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Functions/student_class.php';
+
+	Database::setServer($server);
 	
 	require_once 'log_screen.html';
 
