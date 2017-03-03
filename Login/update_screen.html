@@ -1,44 +1,38 @@
-<?php
-   session_start();
-
-   $user = $_SESSION['username'];
-   $name = $_SESSION['fname'];
-?>
-
 <!DOCTYPE html>
 <html>
    
    <head>
-
       <title>Update Page</title>
-      
    </head>
    
    <body>
 	
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Update User</b></div>
-				
+   <div align = "center">
+      <div style = "width:300px; border: solid 1px #333333; " align = "left">
+         <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Update User</b>
+         </div>				
             <div style = "margin:30px">
                
-               <form action = "" method = "POST">
-                  <label>Username  :</label><input type = "text" name = "username" placeholder = "<?= $user ?>" class = "box" /><br>
-                  <label>Password  :</label><input type = "password" name = "password" placeholder = "password" class = "box" /><br>
-                  <label>Name  :</label><input type = "text" name = "fname" placeholder = "<?= $name ?>" class = "box" /><br>
+            <form action = "" method = "POST">
+               <label>Username  :</label><input type = "text" name = "username" 
+                                          placeholder = "<?= $student->getUsername() ?>" class = "box" />
+                  <br>
+               <label>Password  :</label><input type = "password" name = "password" class = "box" />
+                  <br>
+               <label>Name  :</label><input type = "text" name = "fname" 
+                                      placeholder = "<?= $student->getName() ?>" class = "box" />
+                  <br>
 
-                  <input type = "submit" value = " Submit "/>
-                  <input type = "submit" value = " Delete " method = "del"/>
-                  <input class="button" type="button" onclick="window.location.replace('/chops/hc07-chops/index.php')" value="Cancel" />
+               <input type = "submit" value = " Submit "/>
+               <input type = "submit" value = " Delete " method = "del"/>
+               <input class="button" type="button" onclick="window.location.replace('/chops/hc07-chops/index.php')" 
+                      value="Cancel" />
 
-                  <!-- <p>Not registered yet? <a href='signup.php'>Sign Up Here</a></p> -->
-               </form>
+            </form>
 					
             </div>
-				
-         </div>
-			
       </div>
+   </div>
 
    </body>
 </html>

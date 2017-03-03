@@ -1,7 +1,7 @@
 <?php
 
-   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
-   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
+   use \chops\hc07chops\Database\dbconnect;
+   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Functions/functions.php';
 
    require_once 'update_screen.html';
 
@@ -9,36 +9,23 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
    //get and store user creds from the forum
-   $username = mysqli_real_escape_string($conn, $_POST['username']);
-   $password = mysqli_real_escape_string($conn, $_POST['password']);
-   $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+   $username = mysqli_real_escape_string(Database::connect()->conn, $_POST['username']);
+   $password = mysqli_real_escape_string(Database::connect()->conn, $_POST['password']);
+   $fname = mysqli_real_escape_string(Database::connect()->conn, $_POST['fname']);
 
-   //get ID field based on previous information BEFORE the update
-   $user = $_SESSION['username'];
-   $pass = $_SESSION['password'];
-   $ID = get_id($user, $pass, $conn);
+   $values = [$username, $password, $fname, $student->getUserID()];
 
-   //CHECK TO SEE IF 
+   if(Database::connect()->updateStudentQuery($values)) 
+   {
+      echo "Successfully Updated! <br>";
+      $student->setName($fname);
+      $student->setUsername($username);
+      $student->setPassword($password);
 
-   //MySQL Update Query
-   $query = "UPDATE chops_students SET username='$username', password='$password', fname='$fname' WHERE id= '$ID'";
-   $result = mysqli_query($conn, $query);
-
-if($result) {
-
-         //echo "Successfully Updated!";
-         $_SESSION['username'] = $username;
-         $_SESSION['password'] = $password;
-         $_SESSION['fname'] = $fname;
-
-   header("Location: /chops/hc07-chops/index.php");
+      header("Location: /chops/hc07-chops/index.php");
 
    } else {
       die ("Unsuccessful Update, Please Try Again.");
       }
-
-   // else if ($_SERVER["REQUEST_METHOD"] == "del") {
-
-   // echo "Delete?";
 
 }?>
