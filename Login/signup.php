@@ -1,21 +1,27 @@
 <?php
+   
+   require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Database/dbconnect.php';
+   use \chops\hc07chops\Database\dbconnect;
 
-    require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-Chops/Database/dbconnect.php';
+   Database::setServer($server);
 
-    include 'signup_screen.html';
+   include 'signup_screen.html';
 
-    // If form submitted, insert values into the database.
-    if (isset($_POST['username'])){
+   // If form submitted, insert values into the database.
+   if (isset($_POST['username'])){
 
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-        $query = "INSERT INTO chops_students (username, password, fname)
-                  VALUES ('$username', '$password', '$fname')";
+      $username = mysqli_real_escape_string(Database::connect()->conn, $_POST['username']);
+      $password = mysqli_real_escape_string(Database::connect()->conn, $_POST['password']);
+      $fname = mysqli_real_escape_string(Database::connect()->conn, $_POST['fname']);
 
-            $result = mysqli_query($conn, $query);
+      $values = [$username, $password, $fname];
 
-            if($result){
-                header("Location: login.php");
-            }}
-?>
+   if (Database::connect()->insertStudent($values)) 
+   {
+      header("Location: /chops/hc07-chops/Login/login.php");
+
+   } else {
+      die ("Unsuccessful Update, Please Try Again.");
+      }
+
+}?>
