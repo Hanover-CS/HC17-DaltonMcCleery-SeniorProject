@@ -148,13 +148,40 @@
    		return true;
     }
 
+    //Query method used to insert a new Student into the Student table of the Database.
+    //$values argument should be structured like: ['username', 'password', 'name']
+    function insertStudent($values)
+    {
+    	$query = "INSERT INTO chops_students (username, password, fname)
+                VALUES ('$values[0]', '$values[1]', '$values[2]')";
+
+      $result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+   		return true;
+    }
+
+    //Query method used to delete a Student user from the Student table in the Database.
+    /* protected? */function deleteStudent($ID)
+    {
+    	$query = "DELETE FROM chops_students 
+    						WHERE id = '$ID'";
+
+    	$result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+      return true;
+    }
+
     //This private method is used to test if there was
     //an error performing a Database query.
     private function testForError($result)
     {
       if (!$result)
       {
-        die ("Error retreiving information from Database."); 
+        die ("Error retreiving information from Database.");
       }
     }
 
