@@ -80,7 +80,7 @@
 		}
 
 		//Passed a Content OBJECT, then using the Content Class and the Database Class methods,
-		//it adds a file to the current Student's Favorites section/table. 
+		//it adds a file to the current Student's Favorites section/table.
 		function addFavorite($Content)
 		{
 			$values = [$this->user_id, $Content->get_file_id(), $Content->get_file_address()];
@@ -88,7 +88,8 @@
 			Database::connect()->addToFavorite($values);
 		}
 
-		//TODO
+		//Passed a Content OBJECT, then using the Content Class and the Database Class methods,
+		//it removes a file from the current Student's Favorites section/table. 
 		function removeFavorite($Content)
 		{
 			$values = [$this->user_id, $Content->get_file_id(), $Content->get_file_address()];
@@ -96,11 +97,19 @@
 			Database::connect()->removeFromFavorite($values);
 		}
 
-		//TODO
+		//It is given a username and password variables as checkers.
+		//The passed variables are then used to grab a student_id (using a DB method). 
+		//	If that fails, then there is no user with that username or password.
+		//If it finds an ID that is associated with the passed args,
+		//Then it trys to get a table row with all the Student information.
+		//It uses the information in that Database row to see if it matches the passed args.
+		//	If it does, then that student is logged in.
+		//	If it does not, then the information given is incorrect.
 		function checkLogin($username, $password)
 		{
 			$dbuser_id = Database::connect()->findOneWithoutID("username", $username, 
 													"password", $password, "chops_students", "id");
+			
 			$dbuser = Database::connect()->findOneRow($dbuser_id, "chops_students");
 
 			if ($dbuser['username'] != $username && $dbuser['password'] != $password)

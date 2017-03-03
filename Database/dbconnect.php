@@ -24,7 +24,12 @@
       }
     }
 
-
+    //This is the main method of the DB Class
+    //When this method is called (and it can be called statically without referencing an object),
+    //it checks an instance property, above, to see if there was a DB connection previously made.
+    //If there was, then there is no need to create another connection, just return the first (and only) connection.
+    //If there was not, then it (and only it) calls the construct method of this class
+    //and creates a DB connection.
     public static function connect()
     {
     	if (self::$instance == null)
@@ -39,9 +44,9 @@
   	//The Dummy_server (Parameters) file gives us an Array of DB variables used to
   	//connection to the Database.
   	//Array should be formatted as: [$dbhost, $dbuser, $password, $dbname]
-    static function setServer($server)
+    static function setServer($server_array)
     {
-    	self::$serverinfo = $server;
+    	self::$serverinfo = $server_array;
     	return self::$serverinfo;
     }
 
@@ -61,7 +66,9 @@
       return $result[$column];
     }
 
-
+    //The idea here is to access some DB information without using the ID field.
+    //Some instances arise where the ID is unknown but other pieces of information are known.
+    //I safe guarded some of this by having to know at least 2 other pieces/fields to get at the info
     function findOneWithoutID($fieldname1, $fieldvar1, $fieldname2, $fieldvar2, $table, $column)
     {
       $query = "SELECT $column FROM $table 
@@ -76,6 +83,8 @@
     }
 
     //Same as findOne method except it returns a row of information instead of 1 item.
+    //Ex. findOne returns something like 'etude_name'
+    //findOneRow returns ['etude_name', 'etude_ID', 'etude_composer', 'etude_file']
     function findOneRow($ID, $table)
     {
       $query = "SELECT * FROM $table 
@@ -110,7 +119,7 @@
       return $results;
     }
 
-    //TODO
+    //Query method used to add a file to the Favorites table based on the current student's ID
     function addToFavorite($values)
     {
     	$query = "INSERT INTO chops_favorites (student_id, file_id, file) 
@@ -123,7 +132,7 @@
 			return true;
     }
 
-    //TODO
+    //Query method used to remove a file from the Favorites table based on the current student's ID
     function removeFromFavorite($studentID, $file)
     {
     	$query = "DELETE FROM chops_favorites 
@@ -137,7 +146,8 @@
 			return true;
     }
 
-
+    //Query method used to update the information in the Student table of the Database.
+    //$values argument should be structured like: ['username', 'password', 'name', 'ID']
     function updateStudentQuery($values)
     {
     	$query = "UPDATE chops_students 
