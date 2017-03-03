@@ -119,6 +119,18 @@
       return $results;
     }
 
+    //Counts how many rows there are in a given Table
+    function countRows($table)
+    {
+    	$query = "SELECT 'COUNT(*)' FROM $table";
+
+      $result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+      return $result;
+    }
+
     //Query method used to add a file to the Favorites table based on the current student's ID
     function addToFavorite($values)
     {
