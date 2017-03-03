@@ -52,7 +52,7 @@
       <ul class="nav navbar-nav navbar-right">
 		    <p class="navbar-text navbar-right"><a href="/chops/hc07-chops/Login/logout.php" class="navbar-link"> Sign out </a></p> 
 		    <p class="navbar-text navbar-right">Signed in as <a href="/chops/hc07-chops/Login/update_user.php" class="navbar-link"> 
-        <?php echo $student->get_name() ?></a></p>
+        <?php echo $student->getName() ?></a></p>
       </ul>
 
     </div><!-- /.navbar-collapse -->

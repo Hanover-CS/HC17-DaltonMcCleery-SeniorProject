@@ -29,12 +29,8 @@
   // Example of how to load/render a template with the identifiers and there values
       // --- $twig->render('FILE', array('VARIABLES' => 'VALUES', ... )); --- //
 
-
   //Current logged in Student object
   $student = new Student($_SESSION['username'], $_SESSION['password']);
-
-  //Database object that houses the Connection and query methods
-
 
  
   // -- WORK ON IMPLEMENTING A CLASS/OBJECT-ORIENTED APPROACH TO THIS -- //

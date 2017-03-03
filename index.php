@@ -1,16 +1,13 @@
 <?php
 
 	include 'navbar.php';
+	//include 'something else stylish.html'; Twig...
 
-	//include 'something else stylish.html';
-
-
-	$ID = get_id($_SESSION['username'], $_SESSION['password'], $conn)
 ?>
 <!DOCTYPE HTML>
   <html>
     <head>
-      <title>Chops/User/ <?php echo $student->get_username(); ?></title>
+      <title>Chops/User/ <?php echo $student->getUsername(); ?></title>
  
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <!-- Bootstrap -->

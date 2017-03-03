@@ -148,7 +148,6 @@
    		return true;
     }
 
-    //This protected method is used to test if there was
     //This private method is used to test if there was
     //an error performing a Database query.
     private function testForError($result)
