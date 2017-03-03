@@ -3,8 +3,14 @@
   session_start();
  
   //Database class (dbconnect) and the necessary connection variables (parameters)
-  //NOT NEEDED. require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
-  require $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
+  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/parameters.php';
+
+  //set Server info for Database connection. 
+  //The Dummy_server (Parameters) file gives us an Array of DB variables used to
+  //connection to the Database.
+  //Array should be formatted as: [$dbhost, $dbuser, $password, $dbname]
+  Database::setServer($server);
 
   //Classes
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/student_class.php';
@@ -21,14 +27,13 @@
   ));
 
   // Example of how to load/render a template with the identifiers and there values
-  // $twig->render('FILE', array('VARIABLES' => 'VALUES', ... ));
+      // --- $twig->render('FILE', array('VARIABLES' => 'VALUES', ... )); --- //
 
 
   //Current logged in Student object
-  $student = new Student($_SESSION['fname'], $_SESSION['username'], $_SESSION['password']);
+  $student = new Student($_SESSION['username'], $_SESSION['password']);
 
   //Database object that houses the Connection and query methods
-  $Database = new Database($server);
 
 
  
