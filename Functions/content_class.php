@@ -44,7 +44,14 @@
 		//returns the ID associated with a rudiment for compiling files with the same rudiment ID
 		function getRudimentID()
 		{
-			return Database::connect()->findOne($this->ID, $this->table, 'rudiment_id');			
+			if ($this->table == "chops_rudiment")
+			{
+				//Rudiment table in the database does NOT have a 'rudiment_id' field.
+				//since it IS a rudiment, it is just called id.
+				return Database::connect()->findOne($this->ID, $this->table, 'id');
+			}
+
+			return Database::connect()->findOne($this->ID, $this->table, 'rudiment_id');	
 		}
 
 
