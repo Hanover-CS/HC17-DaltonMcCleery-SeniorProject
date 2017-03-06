@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Accessing Bootstrap -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+  </head>
+
+      <!-- Creating a thumbnail "space" using Bootstrap's divs -->
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+
+          <img src= {{ file_pic }} alt='Rudiment' style='width:242px; height:200px;''>
+            <div class='caption'>
+ 
+              <h3> Rudiment #{{ ID }}</h3>
+
+              <p><a href="/chops/hc07-chops/Library/rudiment.php?id={{ ID }}" class='btn btn-primary' role='button'>
+                  Click Here to learn this Rudiment</a></p>
+
+            </div>
+        </div>
+      </div>
+</html>

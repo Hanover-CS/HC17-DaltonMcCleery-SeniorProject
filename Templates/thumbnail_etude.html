@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- Accessing Bootstrap -->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+  </head>
+
+      <!-- Creating a thumbnail "space" using Bootstrap's divs -->
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+
+          <!-- Accessing the address property of the variables that are passed
+          to this template when it is loaded/rendered. -->
+          <img src= {{ address }} alt='Etude' style='width:242px; height:200px'>
+            <div class='caption'>
+
+              <!-- Same as the address property above, this is passed to this file
+              when it is loaded/rendered. -->
+              <h3>{{ name }}</h3>
+ 
+              <!-- This property is exclusive to the Etude Content. -->
+              <p>Composer: {{ composer }}</p>
+
+              <!-- Check to see if the Etude is more than 1 page.
+              if it is, display what page number the etude is. -->
+              {% if page != null %}
+                <p>Page: {{ page }}</p>
+              {% endif %}
+ 
+              <!-- Button to take the user directly to the source image URL to see the Etude in fullscreen. -->
+              <p><a href= {{ address }} class='btn btn-primary' role='button'>Check it out!</a></p>
+
+            </div>
+        </div>
+      </div>
+</html>
