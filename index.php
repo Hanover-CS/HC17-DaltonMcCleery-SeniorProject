@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
   <html>
     <head>
-      <title>Chops/User/ <?php echo $student->getUsername(); ?></title>
+      <title>Chops/User/<?php echo $student->getUsername(); ?></title>
  
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <!-- Bootstrap -->
@@ -26,7 +26,10 @@
     </div>
 
     <!-- FIX THIS so it can work with all tables at once -->
-    <?= get_Favorites($ID, 'chops_etudes', $conn); ?>
+    <?php
+      include 'display_content.php';
+    ?>
+
 
 
 	</body>
