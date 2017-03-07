@@ -36,8 +36,13 @@
 		//return the File's table-specfic ID
 		function getFileID()
 		{ 
-
     		return $this->ID; 
+		}
+
+		//return the File's table-specfic ID
+		function getFileTable()
+		{ 
+    		return $this->table; 
 		}
 
 

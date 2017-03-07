@@ -79,11 +79,19 @@
 			return false;
 		}
 
+		//TODO
+		function getFavorites()
+		{
+			$favorites = Database::connect()->getStudentFavorites($this->user_id);
+
+			return $favorites;
+		}
+
 		//Passed a Content OBJECT, then using the Content Class and the Database Class methods,
 		//it adds a file to the current Student's Favorites section/table.
 		function addFavorite($Content)
 		{
-			$values = [$this->user_id, $Content->get_file_id(), $Content->get_file_address()];
+			$values = [$this->user_id, $Content->getFileID(), $Content->getFileAddress(), $Content->getFileTable()];
 
 			Database::connect()->addToFavorite($values);
 		}
@@ -92,7 +100,7 @@
 		//it removes a file from the current Student's Favorites section/table. 
 		function removeFavorite($Content)
 		{
-			$values = [$this->user_id, $Content->get_file_id(), $Content->get_file_address()];
+			$values = [$this->user_id, $Content->getFileID(), $Content->getFileAddress(), $Content->getFileTable()];
 
 			Database::connect()->removeFromFavorite($values);
 		}

@@ -134,14 +134,14 @@
     //Query method used to add a file to the Favorites table based on the current student's ID
     function addToFavorite($values)
     {
-    	$query = "INSERT INTO chops_favorites (student_id, file_id, file) 
-    						VALUES ($values[0], $values[1], $values[2])";
+    	$query = "INSERT INTO chops_favorites (student_id, file_id, file, lib_table) 
+    						VALUES ('$values[0]', '$values[1]', '$values[2]', '$values[3]')";
 
     	$result = mysqli_query($this->conn, $query);
 
 			$this->testForError($result);
 
-			return true;
+			// return true;
     }
 
     //Query method used to remove a file from the Favorites table based on the current student's ID
@@ -156,6 +156,26 @@
 			$this->testForError($result);
 
 			return true;
+    }
+
+    function getStudentFavorites($studentID)
+    {
+      $results = [];
+      $counter = 0;
+
+      $query = "SELECT * FROM chops_favorites WHERE student_id = '$studentID'";
+
+      $result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+      while ($row = mysqli_fetch_assoc($result)) 
+      {
+        $results[$counter] = $row;
+        $counter = $counter + 1;
+      }
+
+      return $results;
     }
 
     //Query method used to update the information in the Student table of the Database.
