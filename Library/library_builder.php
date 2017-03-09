@@ -18,7 +18,7 @@
   <html>
 
     <head>
-      <title>Chops/User <?php echo $student->getUsername(); ?></title>
+      <title>Chops/User/<?php echo $student->getUsername(); ?></title>
  
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <!-- Bootstrap -->
@@ -29,13 +29,16 @@
   <body>
  
   <div class="jumbotron">
- 
-    <div class="container">
- 
-      <div class="row">
- 
+        <div class="container">
+          <h1><font color="purple">Chops Library</font></h1>
+        </div>
+    </div>
 
- 
+  
+    <div class="container">
+      <div class="row">
+
+
       <?php
       
       //Using this counter as both a counter and
@@ -47,29 +50,32 @@
         //New Content Object
         $content = new Content($counter, $table);
 
-        // --- ADD FAVORITE BUTTON --- //
-
         if ($table == "chops_etudes")
         {
           echo $twig->render('thumbnail_etude.html', 
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
                   'composer' => $content->getComposer(),
-                  'page' => $content->getPageNum()
+                  'page' => $content->getPageNum(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
+                  'favorite' => $student->checkFavorite($content->getFileAddress())
                 ));
         } else if ($table == "chops_audio")
         {
           echo $twig->render('thumbnail_audio.html', 
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
-                  'bpm' => $content->getBPM()
+                  'bpm' => $content->getBPM(),
+                  'favorite' => $student->checkFavorite($content->getFileAddress())
                 ));
         } else //$table == "chops_video"
         {
           echo $twig->render('thumbnail_video.html', 
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
-                  'rudiment' => $content->getRudimentID()
+                  'rudiment' => $content->getRudimentID(),
+                  'favorite' => $student->checkFavorite($content->getFileAddress())
                 ));
         }
  
@@ -88,8 +94,6 @@
       </div>
  
     </div>
- 
-  </div>
  
   </body>
  

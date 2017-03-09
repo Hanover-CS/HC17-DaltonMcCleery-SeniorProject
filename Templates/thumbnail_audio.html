@@ -11,6 +11,22 @@
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
 
+        {% if favorite == false %}
+        
+        <form action="/chops/hc07-chops/Functions/add_Favorites.php?table={{ table }} method='POST'">
+          <button type='submit' class='btn btn-default btn-lg'>
+          <span class='glyphicon glyphicon-star-empty' aria-hidden='true'></span> Favorite!
+          <input type = 'hidden' name = 'fileID' value = '{{ ID }}'/>
+          <input type = 'hidden' name = 'table' value = '{{ table }}'/></button>
+        </form>
+
+        {% else %}
+
+          <button class='btn btn-default btn-lg'>
+          <span class='glyphicon glyphicon-star' style='color:gold' aria-hidden='true'></span> Favorited! </button>
+
+        {% endif %}
+
         <!-- Audio controls used to create an audio player in HTML/Bootstrap -->
           <audio controls>
             <source src= {{ address }} alt='Audio' type='audio/wav'>

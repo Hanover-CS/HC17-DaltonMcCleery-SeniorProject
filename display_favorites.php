@@ -45,21 +45,23 @@
                   'name' => $content->getFileName(),
                   'composer' => $content->getComposer(),
                   'page' => $content->getPageNum(),
-                  // 'favorite' => $content
+                  'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         } else if ($table == "chops_audio")
         {
           echo $twig->render('thumbnail_audio.html', 
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
-                  'bpm' => $content->getBPM()
+                  'bpm' => $content->getBPM(),
+                  'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         } else //$table == "chops_video"
         {
           echo $twig->render('thumbnail_video.html', 
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
-                  'rudiment' => $content->getRudimentID()
+                  'rudiment' => $content->getRudimentID(),
+                  'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         }
 
