@@ -67,6 +67,8 @@
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
                   'bpm' => $content->getBPM(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
                   'favorite' => $student->checkFavorite($content->getFileAddress())
                 ));
         } else //$table == "chops_video"
@@ -75,9 +77,13 @@
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
                   'rudiment' => $content->getRudimentID(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
                   'favorite' => $student->checkFavorite($content->getFileAddress())
                 ));
         }
+        //Implement this only passing it the actual Content object 
+        //and have the template figure out how to get the requried info based on the object's methods.
  
         //This is used to determine if/when a row should end. A row should only be 3 items, 
         //enough to fit nicely on a page.
