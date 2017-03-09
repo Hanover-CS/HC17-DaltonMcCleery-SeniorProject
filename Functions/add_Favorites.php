@@ -1,47 +1,26 @@
 <?php
  
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Database/dbconnect.php';
- 
-  include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/navbar.php';
- 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
 
- 
-  //the HTML form from the Favorite's button function in the functions.php file already has it's inputs populated with the correct info
-  //about what file is being added and from what table. The info is "hidden" from the user but is accessable through the address bar.
-  //So when a student clicks the Favorite! button of a file, it runs the HTML form and that throws the file and table info into the
-  //address bar and loads this file. This file grabs that info and puts it into another function call that then adds the file into the database.
- 
-  $file = $_GET['file'];
-  
+  //the HTML form from the Favorite's button from the Twig Template file 
+  //already has it's inputs populated with the correct info about what file is being added and from what table. 
+  //The info is "hidden" from the user but is accessable through the address bar.
+  //So when a student clicks the Favorite! button of a file, it runs the HTML form
+  //and that throws the file and table info into the URL and loads this file. 
+  //This file grabs that info and puts it into another function call that then adds the file into the database.
+
   $table = $_GET['table'];
- 
-  $file_id = get_file_id($file, $table, $conn);
- 
+  $fileID = $_GET['fileID'];
+
+  //use the GET variables pass to us by the URL to temporarly create a new Content Object
+  $newfavorite = new Content($fileID, $table);
+
+  //Call the addFavorite method of the Student Class,
+  //using are new Content Object, to add it to the Student's Favorites.
+  $student->addFavorite($newfavorite);
 
  
-  //get student's ID to add the entry for the current student
- 
-  $ID = get_id($_SESSION['username'], $_SESSION['password'], $conn);
- 
- 
-  $query = "INSERT INTO chops_favorites (student_id, file_id, file) VALUES ($ID, $file_id, '$file')";
- 
-  $result = mysqli_query($conn, $query);
- 
-
- 
-  if (!$result)
-  { echo "alert ('Cannot Add to Favorites at this time!')"; }
- 
-
- 
-  //if successfull, this will take the user back to the homepage and display the newly added file in their Favorites section.
-  header("Location: index.php");
- 
-
- 
-  }
- 
-
- 
-?> 
+  //if successfull, this will take the user back to the Libray they were in
+  //and updates the Favorite Button to display "Favorited!" with a gold star.
+  header("Location: /chops/hc07-chops/Library/library_builder.php?table=" . $table);
+?>

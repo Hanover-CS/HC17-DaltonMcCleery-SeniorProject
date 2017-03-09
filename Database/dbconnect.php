@@ -158,6 +158,23 @@
 			return true;
     }
 
+    function checkStudentFavorite($studentID, $file)
+    {
+      $studentFavorites = $this->getStudentFavorites($studentID);
+
+      $length = count($studentFavorites);
+
+      for ($counter = 0; $counter < $length; $counter++)
+      {
+        if ($file == $studentFavorites[$counter]['file'])
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
     function getStudentFavorites($studentID)
     {
       $results = [];

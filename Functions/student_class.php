@@ -69,9 +69,9 @@
 		//Returns false if it is not. 
 		function checkFavorite($file)
 		{
-			$result = Database::connect()->findOne($this->user_id, 'chops_favorites', $file);
-
-			if ($result)
+			$result = Database::connect()->checkStudentFavorite($this->user_id, $file);
+			
+			if ($result == true) 
 			{
 				return true;
 			}
