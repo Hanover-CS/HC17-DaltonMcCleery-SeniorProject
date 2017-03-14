@@ -24,12 +24,14 @@ What things you need to install and a step by step series of examples of how to 
 
 Step 1: download the folder 'Chops'. Make sure it has these components;
 
-- Database folder with setup_db.sql, dbconnect.php, and dummy_server.php.
+- Database Folder with setup_db.sql, dbconnect.php, and dummy_server.php.
 - Login Folder with login.php, logout.php, signup.php, update_user.php, log_screen.html, signup_screen.html, and update_screen.html.
 - Library Folder with library_builder.php, chops_rudiments.php, and rudiment.php.
-- Functions folder with functions.php, person.php, library.php, and add_Favorites.php.
-- Tests folder with chops_tests.php
-- And finally, not in any folder, index.php and navbar.php.
+- Functions Folder with functions.php, student_class.php, content_class.php, and add_Favorites.php.
+- Templates Folder with thumbnail_audio, _video, and _etude templates, as well as a Cache subfolder.
+- Tests Folder with chops_tests.php, ...
+- The js, css, and bootstrap-3.3.7 folders for styling.
+- And finally, not in any folder, index.php, help.php, display_favorites.php and navbar.php.
 
 Step 2: Initialize server.
 
