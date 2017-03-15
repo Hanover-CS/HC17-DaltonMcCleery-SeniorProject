@@ -99,12 +99,13 @@
 
     //Returns an array of data from the Database.
     //Rows are stored one at a time in the While loop
-    function findMany($table, $column)
+    function findMany($table, $column, $whereclause, $equals)
     {
       $results = [];
       $counter = 0;
 
-      $query = "SELECT $column FROM $table";
+      $query = "SELECT $column FROM $table
+                WHERE $whereclause = '$equals'";
 
       $result = mysqli_query($this->conn, $query);
 
