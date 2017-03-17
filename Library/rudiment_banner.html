@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <!-- Bootstrap -->
+        <link href='../css/bootstrap.min.css' rel='stylesheet' media='screen'>
+		<!-- SVG grahpics -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.5.0/svg.min.js"></script>
+	</head>
+
+	<body>
+
+		<div class="container">
+          <center><h1><font face="Times New Roman">The Rudiment Banner</font></h1></center>
+        </div>
+
+        <!-- new div with a set 'id' to house the Rudiment Banner's SVG Canvas-->
+		<div id='banner'></div>
+
+	</body>
+
+	<script>
+		//draw a "canvas" for the banner where the div id matches 'banner'
+		var draw = SVG('banner').size(1600, 50);
+
+		//the horizontal spacing between the Nodes.
+		//Initially, it is set to 50 because the starting Node is at position (20, 10)
+		//and there needs to be 30 "spaces" between each Node.
+		var x = 50;
+
+		//The first Node gets drawn first
+		var circle = draw.circle(20).attr({ fill: '#000', stroke: '#00f' }).cx(20);
+
+		//a loop to make 39 more Nodes (circles) just like the first one
+		for (i = 0; i < 40; i++)
+		{	
+			//first is to connect the line from the previous Node to
+			//the one we're about to make.
+			//
+			//draw.line takes 2 starting cordinates and 2 ending ones,
+			//the line needs to start 30 spaces from the new Node (X axis) and on the same Y axis (10)
+			//and it goes to where the outer ring of the newest one will go (X)
+			//The Y axis never changes
+			var line = draw.line(x-30, 10, x, 10).stroke({ width: 2 })
+
+			//draw a new Node that is 30 x-cordinates (spaces) from the previous one
+			var circle = draw.circle(20).attr({ fill: '#000', stroke: '#00f' }).cx(x);
+
+			//update x to be 30 more than what is was
+			//this is done so the next Node is spaced correctly from the previous one
+			x = x + 30;
+		}
+
+	</script>
+</html>

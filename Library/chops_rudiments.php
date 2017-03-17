@@ -23,7 +23,8 @@
 
   <div class="jumbotron">
         <div class="container">
-          <h1><font color="blue">Rudiment Banner Goes Here</font></h1>
+          <!-- RUDIMENT BANNER -->
+          <?php include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Library/rudiment_banner.html'; ?>
         </div>
     </div>
 
