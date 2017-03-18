@@ -100,7 +100,7 @@
 		//it removes a file from the current Student's Favorites section/table. 
 		function removeFavorite($Content)
 		{
-			$values = [$this->user_id, $Content->getFileID(), $Content->getFileAddress(), $Content->getFileTable()];
+			$values = [$this->user_id, $Content->getFileID(), $Content->getFileTable()];
 
 			Database::connect()->removeFromFavorite($values);
 		}
