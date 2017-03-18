@@ -223,16 +223,82 @@
 
       $this->testForError($result);
 
+
    		return true;
+    }
+
+    //TODO
+    function setStudentProgress($ID)
+    {
+      for ($counter = 1; $counter <= 40; $counter++)
+      {
+        $query_rudiment = "INSERT INTO chops_student_progress (r_id, student_id, status)
+                VALUES ('$counter', '$ID', '0')";
+
+        $result_rudiment = mysqli_query($this->conn, $query_rudiment);
+
+        $this->testForError($result_rudiment);
+      }
+    }
+
+    //TODO
+    function updateStudentProgress($ID, $r_id)
+    {
+      $query = "UPDATE chops_student_progress
+                SET status = 1
+                WHERE student_id = '$ID'
+                AND r_id = '$r_id'";
+
+      $result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+      return true;
+    }
+
+    //TODO
+    function checkStudentProgress($ID, $r_id)
+    {
+      $query = "SELECT status FROM chops_student_progress
+                WHERE student_id = '$ID'
+                AND r_id = '$r_id'";
+
+      $result = mysqli_fetch_array( mysqli_query($this->conn, $query));
+
+      $this->testForError($result);
+
+      if ($result['status'] == 1)
+      {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     //Query method used to delete a Student user from the Student table in the Database.
     /* protected? */function deleteStudent($ID)
     {
-    	$query = "DELETE FROM chops_students 
-    						WHERE id = '$ID'";
+      //First, delete the Student's Rudiment progress
+      $query_progress = "DELETE FROM chops_student_progress
+                         WHERE student_id = '$ID'";
+
+      $result_progress = mysqli_query($this->conn, $query_progress);
+
+      $this->testForError($result_progress);
+
+      //Next, delete all the files the Student has Favorited
+    	$query = "DELETE FROM chops_favorites 
+    						WHERE student_id = '$ID'";
 
     	$result = mysqli_query($this->conn, $query);
+
+      $this->testForError($result);
+
+      //Lastly, delete the Student from the students table
+      $query = "DELETE FROM chops_students 
+                WHERE id = '$ID'";
+
+      $result = mysqli_query($this->conn, $query);
 
       $this->testForError($result);
 
