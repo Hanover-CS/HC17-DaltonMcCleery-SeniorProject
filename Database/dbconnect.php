@@ -146,11 +146,12 @@
     }
 
     //Query method used to remove a file from the Favorites table based on the current student's ID
-    function removeFromFavorite($studentID, $file)
+    function removeFromFavorite($values)
     {
-    	$query = "DELETE FROM chops_favorites 
-    						WHERE student_id = '$studentID'
-    						AND file = $file";
+      $query = "DELETE FROM chops_favorites 
+                WHERE student_id = $values[0]
+                AND file_id = $values[1]
+                AND lib_table = '$values[2]'";
 
     	$result = mysqli_query($this->conn, $query);
 
