@@ -40,9 +40,11 @@
  	</head>
 
  	<body>
+
   <div class="jumbotron">
         <div class="container">
           <!-- RUDIMENT BANNER -->
+          <?php include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Library/rudiment_banner.html'; ?>
         </div>
     </div>
 
@@ -64,34 +66,13 @@
 
 
 		    <!-- Rudiment Picture -->
-		    <div class="col-sm-6 col-md-4">
-        		<div class="thumbnail">
-
-          			<img src= '<?php echo $rudiment_picture->getFileAddress() ?>'
-          				 alt='Rudiment' style='width:300px; height:300px;'>
-          	</div>
-
-            <!-- {% if favorite == false %} -->
-        
-              <!-- <form action=""> STUFF HERE TO CHANGE RUDIMENT BANNER -->
-              <center>
-                <button type='submit' class='btn btn-default btn-lg'>
-                <span class='glyphicon glyphicon-unchecked' style='color:green' aria-hidden='true'></span> Complete?
-                <!-- Stuff to Mark this Rudiment as COMPLETED -->
-                </button>
-              </center><!-- </form> -->
-
-            <!-- {% else %} -->
-
-              <!-- <form action="">
-                <button type='submit' class='btn btn-default btn-lg'>
-                <span class='glyphicon glyphicon-check' style='color:gold' aria-hidden='true'></span> Completed!
-                </button>
-              </form> -->
-
-            <!-- {% endif %} -->
-
-        </div>
+		    <?php
+          echo $twig->render('thumbnail_rudiment_pic.html', 
+                array('address' => $rudiment_picture->getFileAddress(),
+                    'rudi_ID' => $ID,
+                    'completed' => Database::connect()->checkStudentProgress($student->getUserID(), $ID)
+                    ));
+        ?>
 
 
           	<!-- Audio/Metronome Markings -->
