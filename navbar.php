@@ -43,7 +43,18 @@
           <li><a href="/chops/hc07-chops/Library/library_builder.php?table=chops_audio">Audio</a></li>
 
           <!-- Chops Rudiments Homepage -->
-          <li><a href="/chops/hc07-chops/Library/chops_rudiments.php">Rudiments</a></li>
+          <li class="dropdown" class="navbar-text navbar-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rudiments<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            
+            <!-- Link to go to the "Standard" 40 Rudiments homepage -->
+            <li><a href="/chops/hc07-chops/Library/chops_rudiments.php">Standard 40 Rudiments</a></li>
+
+            <!-- Link to go to the Hybrid Rudiments homepage -->
+            <li><a class="btn disabled" href="/chops/hc07-chops/Library/chops_rudiments.php?table=chops_hybrid">
+            Hybrid Rudiments</a></li>
+          </ul>
+        </li>
 
         </ul>
 
