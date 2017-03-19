@@ -45,6 +45,8 @@
                   'name' => $content->getFileName(),
                   'composer' => $content->getComposer(),
                   'page' => $content->getPageNum(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
                   'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         } else if ($table == "chops_audio")
@@ -53,6 +55,8 @@
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
                   'bpm' => $content->getBPM(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
                   'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         } else //$table == "chops_video"
@@ -61,6 +65,8 @@
             array('address' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
                   'rudiment' => $content->getRudimentID(),
+                  'table' => $content->getFileTable(),
+                  'ID' => $content->getFileID(),
                   'favorite' => true //it shouldn't show up if it is not, so no need to check
                 ));
         }
