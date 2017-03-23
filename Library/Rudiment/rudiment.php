@@ -1,30 +1,7 @@
 <?php
- 
+    
     include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/navbar.php';
-    // include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
-
-  	//get the ID from the URL
-  	$ID = $_GET['id'];
-
-  	//Get all the rows from etudes table in the Database
-  	//that have the corrosponding rudiment_id that was given to this file
-  	//audio/video doesn't matter at this point, I will be using the same audios for
-  	//all rudiments (regardless of ID)
-  	//and there is only 1 "main" video I want for each page
-  	$etudes = Database::connect()->findMany("chops_etudes", "*", "rudiment_id", $ID);
-
-  	//Concat both etude and video arrays to make one large array with the correct info
-  	$rudiment_video = new Content($ID, "chops_videos");
-
-  	//TODO
-  	$rudiment_picture = new Content($ID, "chops_rudiment");
-
-  	//Audio Markings
-  	$audios = Database::connect()->findMany("chops_audio", "id", "name", "Metronome Marking");
-  	$audio_length = count($audios);
-
-  	//get the length of how long/how many files have that rudiment_id
-  	$length = count($etudes);
+    include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Library/Rudiment/rudiment_info.php';
 
 ?>
 <!DOCTYPE HTML>
@@ -70,6 +47,7 @@
           echo $twig->render('thumbnail_rudiment_pic.html', 
                 array('address' => $rudiment_picture->getFileAddress(),
                     'rudi_ID' => $ID,
+                    'table' => $table,
                     'completed' => Database::connect()->checkStudentProgress($student->getUserID(), $ID)
                     ));
         ?>
