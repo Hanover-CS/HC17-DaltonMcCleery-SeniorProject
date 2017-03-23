@@ -3,8 +3,6 @@
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Functions/functions.php';
 
 ?>
-
-
 <!DOCTYPE HTML>
 <html>
 
@@ -42,34 +40,36 @@
           <!-- Chops Audio Library Page -->
           <li><a href="/chops/hc07-chops/Library/library_builder.php?table=chops_audio">Audio</a></li>
 
-          <!-- Chops Rudiments Homepage -->
+          <!-- Chops Rudiments -->
           <li class="dropdown" class="navbar-text navbar-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rudiments<span class="caret"></span></a>
             <ul class="dropdown-menu">
             
             <!-- Link to go to the "Standard" 40 Rudiments homepage -->
-            <li><a href="/chops/hc07-chops/Library/chops_rudiments.php">Standard 40 Rudiments</a></li>
+            <li><a href="/chops/hc07-chops/Library/chops_rudiments.php?table=chops_rudiment">
+            Standard 40 Rudiments</a></li>
 
             <!-- Link to go to the Hybrid Rudiments homepage -->
-            <li><a class="btn disabled" href="/chops/hc07-chops/Library/chops_rudiments.php?table=chops_hybrid">
+            <li><a href="/chops/hc07-chops/Library/chops_rudiments.php?table=chops_hybrids">
             Hybrid Rudiments</a></li>
           </ul>
         </li>
 
         </ul>
 
-      <!-- Search through the available Etudes, Audio, and Video -->
-      <form class="navbar-form navbar-left">
+      <!-- Search through the available Etudes, Audio, and Video - WORK IN PROGRESS - -->
+      <div class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+        <button class="btn btn-default">Search</button>
+      </div> <!-- Change these divs to from tags to use the Search bar -->
 
       <!-- Dropdown Menu for Student's organizational links -->
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" class="navbar-text navbar-right">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $student->getName() ?><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+          aria-expanded="false"><?php echo $student->getName() ?><span class="caret"></span></a>
 
           <ul class="dropdown-menu">
 
@@ -80,8 +80,9 @@
             <!-- Link to go to the Helpful hint page to learn about some of the Features of Chops -->
             <li><a href="/chops/hc07-chops/help.php">Help</a></li>
 
-            <!-- Work in Progress/TBA -->
-            <li><a class="btn disabled" href="#">Chat/Forums</a></li>
+            <!-- Run the Method Tests for the Classes -->
+            <!-- Delete the 'class="btn disabled"' section to run tests file -->
+            <li><a class="btn disabled" href="/chops/hc07-chops/tests.php">Run Tests</a></li>
 
             <!-- Link to Destroy the Session variables and Sign the Student out.
             Takes them back to the login page -->
