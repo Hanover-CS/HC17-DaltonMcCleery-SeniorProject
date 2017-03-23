@@ -49,7 +49,7 @@
 		//returns the ID associated with a rudiment for compiling files with the same rudiment ID
 		function getRudimentID()
 		{
-			if ($this->table == "chops_rudiment")
+			if ($this->table == "chops_rudiment" or $this->table == "chops_hybrids")
 			{
 				//Rudiment table in the database does NOT have a 'rudiment_id' field.
 				//since it IS a rudiment, it is just called id.
