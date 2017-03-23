@@ -14,11 +14,24 @@
           <img src= {{ file_pic }} alt='Rudiment' style='width:242px; height:200px;'>
             <div class='caption'>
  
-              <h3> Rudiment #{{ ID }}</h3>
+              <h3> {{ name }} </h3>
 
-              <p><a href="/chops/hc07-chops/Library/Rudiment/rudiment.php?id={{ ID }}"
-                    class='btn btn-primary' role='button'>
-                  Click Here to learn this Rudiment</a></p>
+              {% if table == "chops_hybrids" %}
+
+                <p> Hybrid Rudiment #{{ ID }}</p>
+
+              {% else %}
+
+                <p> Rudiment #{{ ID }}</p>
+
+              {% endif %}
+
+              <form action="/chops/hc07-chops/Library/Rudiment/rudiment.php" method=''">
+                <button type='submit' class='btn btn-primary'> Click Here to learn this Rudiment
+                  <input type = 'hidden' name = 'id' value = '{{ ID }}'/>
+                  <input type = 'hidden' name = 'table' value = '{{ table }}'/>
+                </button>
+              </form>
 
             </div>
         </div>
