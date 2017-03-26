@@ -71,8 +71,8 @@
     //I safe guarded some of this by having to know at least 2 other pieces/fields to get at the info
     function findOneWithoutID($fieldname1, $fieldvar1, $fieldname2, $fieldvar2, $table, $column)
     {
-      $query = "SELECT $column FROM $table 
-      					WHERE $fieldname1 = '$fieldvar1' 
+      $query = "SELECT $column FROM $table
+      					WHERE $fieldname1 = '$fieldvar1'
       					AND $fieldname2 = '$fieldvar2'";
 
       $result = mysqli_fetch_array( mysqli_query($this->conn, $query) );
@@ -247,12 +247,12 @@
                 WHERE student_id = '$ID'
                 AND r_id = '$r_id'";
 
-      $result =mysqli_query($this->conn, $query);
+      $result = mysqli_query($this->conn, $query);
 
       if ($result->num_rows == 0)
       {
         return Null;
-      } else 
+      } else
       {
         return true;
       }
@@ -270,16 +270,16 @@
       $this->testForError($result_progress);
 
       //Next, delete all the files the Student has Favorited
-    	$query = "DELETE FROM chops_favorites 
+    	$query_favorites = "DELETE FROM chops_favorites 
     						WHERE student_id = '$ID'";
 
-    	$result = mysqli_query($this->conn, $query);
+    	$result_favorites = mysqli_query($this->conn, $query_favorites);
 
-      $this->testForError($result);
+      $this->testForError($result_favorites);
 
       //Lastly, delete the Student from the students table
       $query = "DELETE FROM chops_students 
-                WHERE id = '$ID'";
+                WHERE chops_students.id = '$ID'";
 
       $result = mysqli_query($this->conn, $query);
 
