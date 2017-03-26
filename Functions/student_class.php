@@ -29,6 +29,7 @@
 
 		function setName($new_name) 
 		{
+			Database::connect()->updateStudentQuery([$this->username, $this->password, $new_name, $this->user_id]);
 			$this->name = $new_name;
 		}
 
@@ -41,6 +42,7 @@
 
 		function setUsername($new_username) 
 		{
+			Database::connect()->updateStudentQuery([$new_username, $this->password, $this->name, $this->user_id]);
 			$this->username = $new_username;
 		}
 
@@ -53,17 +55,11 @@
 
 		function setPassword($new_password)
 		{
+			Database::connect()->updateStudentQuery([$this->username, $new_password, $this->name, $this->user_id]);
 			$this->password = $new_password;
 		}
 
-
-		function getPassword()
-		{
-			return $this->password;
-		}
-
 		// --- FAvORITES Section --- //
-		// ---  ---  TODO  ---  --- //
 
 		//Returns true if a file IS favorited by a student.
 		//Returns false if it is not. 
@@ -126,6 +122,11 @@
 			}
 
 			return true;
+		}
+
+		function deleteUser($ID)
+		{
+			Database::connect()->deleteStudent($ID);
 		}
 
 	}
