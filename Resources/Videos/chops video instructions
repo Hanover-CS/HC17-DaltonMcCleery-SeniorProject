@@ -1,0 +1,7 @@
+The actual video files (Lessons) used in Chops can be found in this YouTube playlist:
+
+	40 Essential Rudiment Breakdowns with John Wooton - https://www.youtube.com/watch?v=Fj0SeWV5d_c&list=PLpKMeH_MXcaTouA29NMtHVSgR9vjyvIcr
+
+	Rudiment Play-alongs - https://www.youtube.com/watch?v=KjpGoOq-0gc&list=PLpKMeH_MXcaTq2BANT-uVFi9RHTKZhBaR
+
+Instead of accessing the video files directly, the setup_db.sql file can be altered (for videos only) to have these YouTube links for their 'file' column attributes instead of an absolute path to the video file saved on your computer.
