@@ -13,9 +13,9 @@ These instructions will you get a copy of the Chops project up and running on yo
 
 What things you need to install the application and how to install them
 
-	1. MySQL Database - download here: https://dev.mysql.com/downloads/workbench/
-	2. A local or public server - download a WAMP local server here: http://www.wampserver.com/en/
-	3. Internet Browser - download Google Chrome here: https://www.google.com/chrome/browser/desktop/index.html
+- MySQL Database - download here: https://dev.mysql.com/downloads/workbench/
+- A local or public server - download a WAMP local server here: http://www.wampserver.com/en/
+- Internet Browser - download Google Chrome here: https://www.google.com/chrome/browser/desktop/index.html
 
 ### Installing
 
@@ -26,10 +26,11 @@ Step 1: download the folder 'Chops'. Make sure it has these components;
 
 - Database Folder with setup_db.sql, dbconnect.php, and dummy_server.php.
 - Login Folder with login.php, logout.php, signup.php, update_user.php, log_screen.html, signup_screen.html, and update_screen.html.
-- Library Folder with library_builder.php, chops_rudiments.php, and rudiment.php.
-- Functions Folder with functions.php, student_class.php, content_class.php, and add_Favorites.php.
-- Templates Folder with thumbnail_audio, _video, and _etude templates, as well as a Cache subfolder.
-- Tests Folder with chops_tests.php, ...
+- Library Folder with library_builder.php, rudiment_banner.php, chops_rudiments.php, and a subfolder Rudiment with rudiment.php, rudiment_info.php, and related_etudes.php.
+- Functions Folder with functions.php, student_class.php, content_class.php, update_rudiment.php, and add_Favorites.php.
+- Templates Folder with thumbnail_audio, _video, _etude, _rudiment, and _rudiment_pic templates, as well as a Cache subfolder.
+- Tests Folder with tests.php and test_info.php.
+- Documentation Folder with various subfolders and an index.html file.
 - The js, css, and bootstrap-3.3.7 folders for styling.
 - And finally, not in any folder, index.php, help.php, display_favorites.php and navbar.php.
 
@@ -44,6 +45,11 @@ Step 2: Initialize server.
 
 
 Step 3: Run the setup_db file.
+
+- BEFORE ANYTHING! Open this file and adjust the Resource_path variable to be where ever you save the Chops Folder at on your machine. 
+	```
+	Ex. If you save the Chops Folder you downloaded on your Desktop, then the Resource_path variable should be 'C:\Users\yournamehere\Desktop'.
+	```
 
 Way 1 with MySQL workbench:
 
@@ -83,20 +89,27 @@ Step 4: Run the application.
 - 5. Select the Favorite button on the top left of the item box.
 - 6. From here, you can go back to the Homepage and see that Audio item in your Favorites section.
 
-## Running the tests
+## Running the tests and viewing Documentation
 
-Examples of how to run the automated test file.
+Example of how to run the automated test file.
 
-```
-TODO
-```
+- 1. in the navbar.php file, go to `line 85` and delete `class="btn disabled"` from the href link.
+- 2. Login to Chops like normal and underneath the dropdown menu with your name, you can now access link to run the tests file.
+
+Example of how to access the Documentation files.
+
+- 1. in the navbar.php file, go to `line 89` and delete `class="btn disabled"` from the href link.
+- 2. Login to Chops like normal and underneath the dropdown menu with your name, you can now access link to take you to the Documentation homepage.
+- 3. From here you can read comments about each of the Classes used in building the various aspects of the Chops interface.
 
 
 ## Built With
 
-* [Bootstrap](http://getbootstrap.com/) - The html/css/javascript framework used
+* [Bootstrap](http://getbootstrap.com/) - The HTML/CSS/JavaScript framework used
+* [phpDocumentor](https://phpdoc.org/) - The Documentation generator used
+* [Twig](http://twig.sensiolabs.org/) - The HTML template system used
 
-## Authors
+## Author
 
 * **Dalton McCleery** - [DaltonMcc](https://github.com/DaltonMcc)
 
