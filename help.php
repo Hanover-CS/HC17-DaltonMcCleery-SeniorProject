@@ -1,12 +1,13 @@
 <?php
 	include 'navbar.php';
+  $resource_path = ''; //absolute path to the /Resources subfolder of the Chops main folder
 ?>
 
 <!DOCTYPE HTML>
 <html>
 
 	<head>
-		<title>Chops/User/<?= $_SESSION['username'] ?></title>
+		<title>Chops/Users/<?= $student->getUsername() ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     	<!-- Bootstrap -->
@@ -27,7 +28,7 @@
 <div class="media">
   <div class="media-left">
     <a href="#">
-      <img class="media-object" src="http://localhost/chops/Fav_example.png" alt="Favorite Example">
+      <img class="media-object" src="<?php echo $resource_path ?>/resources/Fav_example.png" alt="Favorite Example">
     </a>
   </div>
   <div class="media-body">
