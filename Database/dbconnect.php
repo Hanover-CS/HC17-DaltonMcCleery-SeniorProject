@@ -12,11 +12,19 @@
     private static $instance = null;
     private static $serverinfo;
 
-    //$server variable should be an ARRAY with
-    //the first element being the server host,
-    //the second element being the username of the database,
-    //the third being the password to the database,
-    //the last (fourth) being the server name.
+    /**
+     * The Constructor method for establishing Connection to the Database
+     *
+     * Using the server's specific information, this method attempts to connect to the DB's server,
+     * throwing an error if a connection cannot be established.
+     *
+     * @param array $server with the first element being the server host,
+     * the second element being the username of the database,
+     * the third being the password to the database,
+     * and the last (fourth) being the server name.
+     *
+     * @return void
+     */
     private function __construct($server) 
     {
       $this->conn = mysqli_connect($server[0], $server[1], $server[2], $server[3]);
