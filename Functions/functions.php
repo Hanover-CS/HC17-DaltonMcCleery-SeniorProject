@@ -23,7 +23,7 @@
 
   $loader = new Twig_Loader_Filesystem('C:/wamp64/www/Chops/hc07-Chops/Templates');
   $twig = new Twig_Environment($loader, array(
-      'cache' => 'C:/wamp64/www/Chops/vendor/composer/vendor/twig/twig/test/Twig/Tests',
+      'cache' => 'direct/path/to/Chops/Templates/Cache',
   ));
 
   // Example of how to load/render a template with the identifiers and there values
