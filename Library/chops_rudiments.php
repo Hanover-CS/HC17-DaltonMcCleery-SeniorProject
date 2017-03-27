@@ -3,8 +3,12 @@
   //include the navbar, which in turn haas access to the functions file
   include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/navbar.php';
 
+  //the navbar puts what table is being accessed in the URL of the page
+  //So I "get" that field and that helps determine which database table to grab from
+  $table = $_GET['table'];
+
   //determine how many content elements need to appear on the page
-  $length = (Database::connect()->countRows("chops_rudiment"))->num_rows;
+  $length = (Database::connect()->countRows($table))->num_rows;
  
 ?>
 <!DOCTYPE HTML>
@@ -23,7 +27,8 @@
 
   <div class="jumbotron">
         <div class="container">
-          <h1><font color="blue">Rudiment Banner Goes Here</font></h1>
+          <!-- RUDIMENT BANNER -->
+          <?php include $_SERVER['DOCUMENT_ROOT'] . '/chops/hc07-chops/Library/rudiment_banner.html'; ?>
         </div>
     </div>
 
@@ -43,14 +48,13 @@
       {
 
         //New Content Object
-        $content = new Content($counter, "chops_rudiment");
-
-        // --- ADD FAVORITE BUTTON --- //
+        $content = new Content($counter, $table);
 
         echo $twig->render('thumbnail_rudiment.html', 
             array('file_pic' => $content->getFileAddress(),
                   'name' => $content->getFileName(),
-                  'ID' => $content->getRudimentID()
+                  'ID' => $content->getRudimentID(),
+                  'table' => $table
                 ));
  
         //This is used to determine if/when a row should end. A row should only be 3 items, 
