@@ -31,6 +31,7 @@ Step 1: download the folder 'Chops'. Make sure it has these components;
 - Templates Folder with thumbnail_audio, _video, _etude, _rudiment, and _rudiment_pic templates, as well as a Cache subfolder.
 - Tests Folder with tests.php and test_info.php.
 - Documentation Folder with various subfolders and an index.html file.
+- Resources Folder with Audio, Videos, Etudes, Rudi Pics, and Hybrid Rudi Pics subfolders (all the content for the Database)
 - The js, css, and bootstrap-3.3.7 folders for styling.
 - And finally, not in any folder, index.php, help.php, display_favorites.php and navbar.php.
 
