@@ -64,7 +64,7 @@
       	$video_rows = $db->countRows('chops_videos');
       	$etude_rows = $db->countRows('chops_etudes');
 
-      	unseenTest( $etude_rows->num_rows == 54, "countRows method (etude)");
+      	unseenTest( $etude_rows->num_rows == 56, "countRows method (etude)");
       	unseenTest( $video_rows->num_rows == 12, "countRows method (video)");
       	test( $audio_rows->num_rows == 22, "countRows method");
 
