@@ -84,6 +84,10 @@
             <!-- Delete the 'class="btn disabled"' section to run tests file -->
             <li><a class="btn disabled" href="/chops/hc07-chops/tests.php">Run Tests</a></li>
 
+            <!-- Access the Documentation files -->
+            <!-- Delete the 'class="btn disabled"' section to access this feature -->
+            <li><a class="btn disabled" href="/chops/hc07-chops/Documentation/index.html">Documentation</a></li>
+
             <!-- Link to Destroy the Session variables and Sign the Student out.
             Takes them back to the login page -->
             <li role="separator" class="divider"></li>
